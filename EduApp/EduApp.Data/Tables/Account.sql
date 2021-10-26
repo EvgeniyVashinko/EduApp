@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Account]
+(
+	[AccountId] UNIQUEIDENTIFIER NOT NULL,
+	[Username] NVARCHAR(30) NOT NULL,
+	[Password] NVARCHAR(64) NOT NULL,
+
+	CONSTRAINT [PK_Account] PRIMARY KEY([AccountId])
+);
