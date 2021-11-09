@@ -1,11 +1,6 @@
 ﻿using EduApp.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EduApp.Repositories.Configs
 {
@@ -13,7 +8,12 @@ namespace EduApp.Repositories.Configs
     {
         public void Configure(EntityTypeBuilder<Homework> builder)
         {
-            throw new NotImplementedException();
+            builder.ToTable(nameof(Homework));
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).HasColumnName("HomeworkId");
+
+            builder.HasOne(x => x.Account).WithMany(x => x.Homeworks);
+            builder.HasOne(x => x.Lesson).WithMany(x => x.Homeworks);
         }
     }
 }
