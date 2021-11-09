@@ -3,7 +3,7 @@ using System;
 
 namespace EduApp.Core.Entities
 {
-    public class Order : BaseEntity
+    public class Order : BaseEntity<Guid>
     {
         public decimal Sum { get; set; }
 

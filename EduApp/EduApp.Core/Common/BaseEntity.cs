@@ -1,11 +1,7 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace EduApp.Core.Common
+﻿namespace EduApp.Core.Common
 {
-    public abstract class BaseEntity
+    public abstract class BaseEntity<TKey>
     {
-        [Key]
-        public Guid Id { get; set; }
+        public TKey Id { get; set; }
     }
 }

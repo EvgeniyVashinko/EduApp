@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EduApp.Core.Entities
 {
-    public class Course : BaseEntity
+    public class Course : BaseEntity<Guid>
     {
         public string Title { get; set; }
         
@@ -24,8 +24,12 @@ namespace EduApp.Core.Entities
 
         public ICollection<Account> Participants { get; set; }
 
-        public ICollection<Rewiew> Rewiews { get; set; }
+        public ICollection<Review> Rewiews { get; set; }
 
         public ICollection<Order> Orders { get; set; }
+
+        public ICollection<Category> Categories { get; set; }
+
+        public ICollection<Lesson> Lessons { get; set; }
     }
 }

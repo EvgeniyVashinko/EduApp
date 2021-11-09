@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace EduApp.Core.Entities
 {
-    public class Homework : BaseEntity
+    public class Homework : BaseEntity<Guid>
     {
         public string Answer { get; set; }
 
