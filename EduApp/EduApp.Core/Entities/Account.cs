@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace EduApp.Core.Entities
 {
-    public class Account : BaseEntity
+    public class Account : BaseEntity<Guid>
     {
         public string Username { get; set; }
 
@@ -12,7 +12,7 @@ namespace EduApp.Core.Entities
 
         public ICollection<Homework> Homework { get; set; }
 
-        public ICollection<Rewiew> Rewiews { get; set; }
+        public ICollection<Review> Rewiews { get; set; }
 
         public ICollection<Course> MyStartedCourses { get; set; }
 
@@ -21,6 +21,8 @@ namespace EduApp.Core.Entities
         public ICollection<Role> Roles { get; set; }
 
         public ICollection<Order> Orders { get; set; }
+
+        public ICollection<Comment> Comments { get; set; }
 
         public Guid UserInfoId { get; set; }
 

@@ -3,7 +3,7 @@ using System;
 
 namespace EduApp.Core.Entities
 {
-    public class Comment : BaseEntity
+    public class Comment : BaseEntity<Guid>
     {
         public string Text { get; set; }
 

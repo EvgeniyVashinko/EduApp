@@ -3,7 +3,7 @@ using System;
 
 namespace EduApp.Core.Entities
 {
-    public class UserInfo : BaseEntity
+    public class UserInfo : BaseEntity<Guid>
     {
         public string FirstName { get; set; }
 

@@ -3,7 +3,7 @@ using System;
 
 namespace EduApp.Core.Entities
 {
-    public class Rewiew : BaseEntity
+    public class Review : BaseEntity<Guid>
     {
         public byte Value { get; set; }
 
