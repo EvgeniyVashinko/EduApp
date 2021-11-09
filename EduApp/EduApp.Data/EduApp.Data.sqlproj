@@ -60,4 +60,22 @@
     <Folder Include="Scripts" />
     <Folder Include="DbScheme" />
   </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\Account.sql" />
+    <Build Include="Tables\Role.sql" />
+    <Build Include="Tables\AccountRole.sql" />
+    <Build Include="Tables\UserInfo.sql" />
+    <Build Include="Tables\Course.sql" />
+    <Build Include="Tables\Category.sql" />
+    <Build Include="Tables\CourseCategory.sql" />
+    <Build Include="Tables\Order.sql" />
+    <Build Include="Tables\CourseParticipants.sql" />
+    <Build Include="Tables\Lesson.sql" />
+    <Build Include="Tables\Homework.sql" />
+    <Build Include="Tables\Review.sql" />
+    <Build Include="Tables\Comment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="EduApp.Data.refactorlog" />
+  </ItemGroup>
 </Project>
