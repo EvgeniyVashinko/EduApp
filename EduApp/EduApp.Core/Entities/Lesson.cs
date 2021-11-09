@@ -21,5 +21,7 @@ namespace EduApp.Core.Entities
         public Course Course { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
+
+        public ICollection<Homework> Homeworks { get; set; }
     }
 }
