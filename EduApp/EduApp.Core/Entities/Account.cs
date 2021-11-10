@@ -10,7 +10,7 @@ namespace EduApp.Core.Entities
 
         public string Password { get; set; }
 
-        public ICollection<Homework> Homework { get; set; }
+        public ICollection<Homework> Homeworks { get; set; }
 
         public ICollection<Review> Rewiews { get; set; }
 

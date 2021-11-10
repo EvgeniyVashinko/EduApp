@@ -8,7 +8,7 @@ namespace EduApp.Repositories.Configs
     {
         public void Configure(EntityTypeBuilder<Course> builder)
         {
-            builder.ToTable(nameof(Account));
+            builder.ToTable(nameof(Course));
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).HasColumnName("CourseId");
 
