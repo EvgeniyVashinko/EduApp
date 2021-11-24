@@ -1,6 +1,9 @@
 ﻿using EduApp.Core.Common;
+using EduApp.Core.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 
 namespace EduApp.Core.Entities
 {
@@ -27,5 +30,25 @@ namespace EduApp.Core.Entities
         public Guid UserInfoId { get; set; }
 
         public UserInfo UserInfo { get; set; }
+
+
+        public bool VerifyPassword(string password)
+        {
+            return !string.IsNullOrEmpty(password) &&
+                   Password == PasswordHelper.ComputeHash(password);
+        }
+
+        public void ChangePassword(string password)
+        {
+            Password = PasswordHelper.ComputeHash(password);
+        }
+
+        public IEnumerable<Claim> GetClaims()
+        {
+            var claims = Roles.Select(x => new Claim(ClaimTypes.Role, x.Name)).ToList();
+            claims.Add(new Claim(ClaimTypes.Name, Username));
+
+            return claims;
+        }
     }
 }
