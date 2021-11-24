@@ -41,6 +41,7 @@ namespace EduApp
             ));
 
             services.AddTransient<IAccountService, AccountService>();
+            services.AddTransient<IUserService, UserService>();
 
             services.AddAuthentication(options =>
             {

@@ -11,7 +11,7 @@ namespace EduApp.Core.Entities
 
         public DateTime Birthday { get; set; }
 
-        public byte Sex { get; set; }
+        public bool Sex { get; set; }
 
         public string Email { get; set; }
 

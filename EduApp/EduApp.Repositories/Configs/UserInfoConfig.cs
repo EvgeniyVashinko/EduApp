@@ -12,7 +12,7 @@ namespace EduApp.Repositories.Configs
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).HasColumnName("UserInfoId");
 
-            builder.HasOne(x => x.Account).WithOne(x => x.UserInfo);
+            builder.HasOne(x => x.Account).WithOne(x => x.UserInfo).HasForeignKey<Account>(b => b.UserInfoId);
         }
     }
 }
