@@ -51,11 +51,10 @@ namespace EduApp.Services
                 throw new AppException("Password is required");
             }
 
-            var user = _uow.AccountRepository.FindByUsername(request.Username);
+            var user = await Task.Run(() => _uow.AccountRepository.FindByUsername(request.Username));
             if (user is not null)
             {
-                throw new AppException("Username \"" + user.Username + "\" is already taken");
-
+                throw new AppException($"Username \"{user.Username}\" is already taken");
             }
 
             var salt = PasswordHelper.GenerateSalt(Account.PasswordSaltLength);
