@@ -41,6 +41,24 @@ namespace EduApp.Services
 
         public async Task<UserResponse> CreateUser(CreateUserRequest request)
         {
+            if (string.IsNullOrWhiteSpace(request.Username))
+            {
+                throw new AppException("Username is required");
+            }
+
+            if (string.IsNullOrWhiteSpace(request.Password))
+            {
+                throw new AppException("Password is required");
+            }
+
+            var user = _uow.AccountRepository.FindByUsername(request.Username);
+            if (user is not null)
+            {
+                throw new AppException("Username \"" + user.Username + "\" is already taken");
+
+            }
+
+            var salt = PasswordHelper.GenerateSalt(Account.PasswordSaltLength);
             var userInfo = new UserInfo
             {
                 FirstName = request.FirstName,
@@ -52,7 +70,8 @@ namespace EduApp.Services
                 Account = new Account
                 {
                     Username = request.Username,
-                    Password = PasswordHelper.ComputeHash(request.Password),
+                    PasswordSalt = salt,
+                    Password = PasswordHelper.ComputeHash(request.Password, salt)
                 }
             };
 
@@ -79,10 +98,14 @@ namespace EduApp.Services
             userInfo.LastName = request.LastName;
             userInfo.Email = request.Email;
             userInfo.Account.Username = request.Username;
-            userInfo.Account.Password = string.IsNullOrEmpty(request.Password) ? userInfo.Account.Password : PasswordHelper.ComputeHash(request.Password);
             userInfo.Birthday = request.Birthday;
             userInfo.Sex = request.Sex;
             userInfo.Image = request.Image ?? userInfo.Image;
+
+            if (!string.IsNullOrEmpty(request.Password))
+            {
+                userInfo.Account.ChangePassword(request.Password);
+            }
 
             _uow.UserInfoRepository.Update(userInfo);
 

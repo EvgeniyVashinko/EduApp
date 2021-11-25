@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EduApp.Core.Cryptography;
+using System;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -6,18 +7,50 @@ namespace EduApp.Core.Helpers
 {
     public static class PasswordHelper
     {
-        public static string ComputeHash(string password)
+        /// <exception cref="System.ArgumentException"><paramref name="length" /> must be > 0.</exception>
+        /// <exception cref="System.Security.Cryptography.CryptographicException">
+        ///     The cryptographic service provider (CSP) cannot be acquired.
+        /// </exception>
+        public static string GenerateSalt(int length)
+        {
+            if (length <= 0)
+            {
+                throw new ArgumentException("Length must be > 0.", nameof(length));
+            }
+
+            using var cryptoService = new RNGCryptoServiceProvider();
+            var saltBytes = new byte[length];
+            cryptoService.GetNonZeroBytes(saltBytes);
+            return Encoding.Unicode.GetString(saltBytes);
+        }
+
+        /// <exception cref="System.ArgumentNullException"></exception>
+        public static string ComputeHash(string password, string salt)
         {
             if (string.IsNullOrEmpty(password))
             {
-                throw new ArgumentException("Length must be > 0.", nameof(password));
+                throw new ArgumentNullException(nameof(password));
             }
 
-            var bytes = Encoding.Unicode.GetBytes(password);
-            using var sha512 = SHA512.Create();
-            var hashed = sha512.ComputeHash(bytes);
+            if (string.IsNullOrEmpty(salt))
+            {
+                throw new ArgumentNullException(nameof(salt));
+            }
 
-            return Encoding.Unicode.GetString(hashed);
+            var hashAlgorithm = new Sha512Hash();
+            return hashAlgorithm.CalculateHash(password + salt);
+        }
+
+        /// <exception cref="System.ArgumentException"><paramref name="length" /> must be > 0.</exception>
+        public static string Generate(int length)
+        {
+            if (length <= 0)
+            {
+                throw new ArgumentException("Length must be > 0.", nameof(length));
+            }
+
+            var randomString = Convert.ToBase64String(Guid.NewGuid().ToByteArray()).Trim();
+            return length <= randomString.Length ? randomString[..length] : randomString;
         }
     }
 }
