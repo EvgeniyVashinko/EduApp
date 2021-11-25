@@ -1,4 +1,5 @@
 ﻿using EduApp.Core.Requests;
+using EduApp.Core.Requests.User;
 using EduApp.Core.Responses;
 using EduApp.Core.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -18,11 +19,13 @@ namespace EduApp.Controllers
     {
         private readonly IJwtService _jwtService;
         private readonly IAccountService _accountService;
+        private readonly IUserService _userService;
 
-        public AccountController(IJwtService jwtService, IAccountService accountService)
+        public AccountController(IJwtService jwtService, IAccountService accountService, IUserService userService)
         {
             _jwtService = jwtService;
             _accountService = accountService;
+            _userService = userService;
         }
 
         [HttpPost("Login")]
@@ -39,6 +42,7 @@ namespace EduApp.Controllers
                     var response = new AuthenticationResponse()
                     {
                         Token = jwt,
+                        AccountId = account.AccountId
                     };
 
                     return Ok(response);
@@ -50,6 +54,35 @@ namespace EduApp.Controllers
             }
 
             return Unauthorized();
+        }
+
+        [HttpPost("Registration")]
+        public async Task<IActionResult> Registration([FromBody] CreateUserRequest request)
+        {
+            try
+            {
+                await _userService.CreateUser(request);
+
+                var account = await _accountService.GetAccountPermissionsOrDefault(new()
+                {
+                    Username = request.Username,
+                    Password = request.Password
+                });
+
+                var jwt = _jwtService.GetJwt(account.Claims);
+
+                var response = new AuthenticationResponse()
+                {
+                    Token = jwt,
+                    AccountId = account.AccountId
+                };
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
         }
     }
 }
