@@ -1,0 +1,11 @@
+mat-form-field {
+  display: block;
+}
+
+button {
+  width: 100%;
+}
+
+.sign_up_btn {
+  margin-top: 20px;
+}

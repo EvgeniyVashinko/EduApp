@@ -1,16 +1,19 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { AccountLoginComponent } from "./account-login/account-login.component";
 import { RouterModule } from "@angular/router";
 import { MatInputModule } from "@angular/material";
 import { MatFormFieldModule } from "@angular/material";
 import { MatIconModule } from "@angular/material";
 import { MatCardModule } from "@angular/material";
 import { MatButtonModule } from "@angular/material";
+import { MatSelectModule } from "@angular/material";
+import { MatToolbarModule } from "@angular/material";
+import { AccountRegistrationComponent } from "../account-registration/account-registration.component";
+import { AccountLoginComponent } from "./account-login/account-login.component";
 
 @NgModule({
-  declarations: [AccountLoginComponent],
+  declarations: [AccountLoginComponent, AccountRegistrationComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -19,10 +22,17 @@ import { MatButtonModule } from "@angular/material";
     MatIconModule,
     MatCardModule,
     MatButtonModule,
+    MatSelectModule,
+    MatToolbarModule,
     RouterModule.forRoot([
       {
         path: "account/login",
         component: AccountLoginComponent,
+        pathMatch: "full",
+      },
+      {
+        path: "account/registration",
+        component: AccountRegistrationComponent,
         pathMatch: "full",
       },
     ]),

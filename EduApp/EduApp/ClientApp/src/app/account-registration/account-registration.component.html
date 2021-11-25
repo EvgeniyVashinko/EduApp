@@ -1,0 +1,95 @@
+<form>
+  <h1>Registration</h1>
+  <mat-form-field appearance="fill">
+    <mat-label>First name</mat-label>
+    <input
+      [(ngModel)]="firstName"
+      name="firstName"
+      matInput
+      placeholder="My first name is..."
+      required
+    />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Last name</mat-label>
+    <input
+      [(ngModel)]="lastName"
+      name="lastName"
+      matInput
+      placeholder="My last name is..."
+      required
+    />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input
+      type="email"
+      [(ngModel)]="email"
+      name="email"
+      matInput
+      placeholder="My username is..."
+      required
+    />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Username</mat-label>
+    <input
+      [(ngModel)]="username"
+      name="username"
+      matInput
+      placeholder="My username is..."
+      required
+    />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input
+      [(ngModel)]="password"
+      name="password"
+      matInput
+      [type]="hide ? 'password' : 'text'"
+      required
+    />
+    <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
+      <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+    </button>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Birthday</mat-label>
+    <input
+      type="date"
+      [(ngModel)]="birthday"
+      name="birthday"
+      matInput
+      placeholder="My username is..."
+      required
+    />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Sex</mat-label>
+    <mat-select [(ngModel)]="sex" name="sex" required>
+      <mat-option value="true">Male</mat-option>
+      <mat-option value="false">Female</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p>Avatar</p>
+  <input
+    type="file"
+    #UploadFileInput
+    id="fileUpload"
+    (change)="fileChangeEvent($event)"
+    name="fileUpload"
+    multiple="multiple"
+    accept="image/png, image/jpeg"
+    [(ngModel)]="avatar"
+  />
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    (click)="registration()"
+    class="sign_up_btn"
+  >
+    Sign up
+  </button>
+</form>
