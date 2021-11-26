@@ -20,6 +20,10 @@ namespace EduApp.Services
         public async Task<UserResponse> GetUser(GetUserRequest request)
         {
             var user = await Task.Run(() => _uow.UserInfoRepository.Find(request.Id));
+            if (user is null)
+            {
+                throw new AppException("User not found");
+            }
 
             var response = new UserResponse(user);
 
@@ -29,6 +33,10 @@ namespace EduApp.Services
         public async Task<UserResponse> RemoveUser(RemoveUserRequest request)
         {
             var user = await Task.Run(() => _uow.UserInfoRepository.Find(request.Id));
+            if (user is null)
+            {
+                throw new AppException("User not found");
+            }
 
             _uow.UserInfoRepository.Remove(user);
 
@@ -92,6 +100,10 @@ namespace EduApp.Services
         public async Task<UserResponse> UpdateUser(UpdateUserRequest request)
         {
             var userInfo = await Task.Run(() => _uow.UserInfoRepository.Find(request.Id));
+            if (userInfo is null)
+            {
+                throw new AppException("User not found");
+            }
 
             userInfo.FirstName = request.FirstName;
             userInfo.LastName = request.LastName;

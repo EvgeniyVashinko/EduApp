@@ -6,12 +6,9 @@ namespace EduApp.Core.Services
 {
     public interface ICourseService
     {
-        public interface IUserService
-        {
-            public Task<CourseResponse> GetUser(GetCourseRequest request);
-            public Task<CourseResponse> CreateUser(CreateCourseRequest request);
-            public Task<CourseResponse> UpdateUser(UpdateCourseRequest request);
-            public Task<CourseResponse> RemoveUser(RemoveCourseRequest request);
-        }
+        public Task<CourseResponse> GetCourse(GetCourseRequest request);
+        public Task<CourseResponse> CreateCourse(CreateCourseRequest request);
+        public Task<CourseResponse> UpdateCourse(UpdateCourseRequest request);
+        public Task<CourseResponse> RemoveCourse(RemoveCourseRequest request);
     }
 }
