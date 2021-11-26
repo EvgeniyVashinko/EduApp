@@ -81,7 +81,7 @@ namespace EduApp.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(new { ex.Message});
             }
         }
     }

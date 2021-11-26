@@ -13,7 +13,7 @@ namespace EduApp.Repositories.Repositories
         protected override IQueryable<UserInfo> MakeInclusions()
         {
             return DbSet.Include(x => x.Account)
-                        .ThenInclude(x => x.Roles);
+                        .ThenInclude(x => x.UserInfo);
         }
     }
 }

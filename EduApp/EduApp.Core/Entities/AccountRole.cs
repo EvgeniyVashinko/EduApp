@@ -1,13 +1,11 @@
-﻿using System;
+﻿using EduApp.Core.Common;
+using System;
 
 namespace EduApp.Core.Entities
 {
-    public class AccountRole
+    public class AccountRole : BaseEntity<Guid>
     {
-        public Guid RoleId { get; set; }
-        public Role Role { get; set; }
-
         public Guid AccountId { get; set; }
-        public Account Account { get; set; }
+        public Guid RoleId { get; set; }
     }
 }
