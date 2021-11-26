@@ -9,9 +9,11 @@ namespace EduApp.Core.Entities
 {
     public class Account : BaseEntity<Guid>
     {
-        public string Username { get; set; }
+        public const int PasswordSaltLength = 128;
 
+        public string Username { get; set; }
         public string Password { get; set; }
+        public string PasswordSalt { get; set; }
 
         public ICollection<Homework> Homeworks { get; set; }
 
@@ -27,20 +29,18 @@ namespace EduApp.Core.Entities
 
         public ICollection<Comment> Comments { get; set; }
 
-        public Guid UserInfoId { get; set; }
-
         public UserInfo UserInfo { get; set; }
-
 
         public bool VerifyPassword(string password)
         {
             return !string.IsNullOrEmpty(password) &&
-                   Password == PasswordHelper.ComputeHash(password);
+                   PasswordHelper.ComputeHash(password, PasswordSalt) == Password;
         }
 
         public void ChangePassword(string password)
         {
-            Password = PasswordHelper.ComputeHash(password);
+            PasswordSalt = PasswordHelper.GenerateSalt(PasswordSaltLength);
+            Password = PasswordHelper.ComputeHash(password, PasswordSalt);
         }
 
         public IEnumerable<Claim> GetClaims()
