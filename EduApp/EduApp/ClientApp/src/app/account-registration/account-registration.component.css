@@ -7,5 +7,9 @@ button {
 }
 
 .sign_up_btn {
-  margin-top: 20px;
+  margin: 20px 0px;
+}
+
+.error__item {
+  color: red;
 }
