@@ -23,11 +23,56 @@ namespace EduApp.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetCourse([FromBody]GetCourseRequest request)
+        public async Task<IActionResult> GetCourse([FromRoute]GetCourseRequest request)
         {
             try
             {
                 var course = await _courseService.GetCourse(request);
+
+                return Ok(course);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> RemoveCourse([FromRoute] RemoveCourseRequest request)
+        {
+            try
+            {
+                var course = await _courseService.RemoveCourse(request);
+
+                return Ok(course);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("Create")]
+        public async Task<IActionResult> CreateCourse([FromBody] CreateCourseRequest request)
+        {
+            try
+            {
+                var course = await _courseService.CreateCourse(request);
+
+                return Ok(course);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("Update/{id}")]
+        public async Task<IActionResult> UpdateCourse([FromBody] UpdateCourseRequest request)
+        {
+            try
+            {
+                var course = await _courseService.UpdateCourse(request);
 
                 return Ok(course);
             }
