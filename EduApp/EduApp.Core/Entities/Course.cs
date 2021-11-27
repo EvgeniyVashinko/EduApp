@@ -15,7 +15,7 @@ namespace EduApp.Core.Entities
         
         public DateTime CreationDate { get; set; }
         
-        public DateTime UpdateDate { get; set; }
+        public DateTime UpdatedDate { get; set; }
 
         [Column("AccountId")]
         public Guid OwnerId { get; set; }
