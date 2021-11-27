@@ -22,6 +22,21 @@ namespace EduApp.Controllers
             _courseService = courseService;
         }
 
+        [HttpGet("List")]
+        public async Task<IActionResult> GetCourseList([FromBody] CourseListRequest request)
+        {
+            try
+            {
+                var response = await _courseService.GetCourseList(request);
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCourse([FromRoute]GetCourseRequest request)
         {
