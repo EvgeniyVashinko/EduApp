@@ -5,7 +5,7 @@ namespace EduApp.Core.Entities
 {
     public class Review : BaseEntity<Guid>
     {
-        public byte Value { get; set; }
+        public int Value { get; set; }
 
         public string Description { get; set; }
 
