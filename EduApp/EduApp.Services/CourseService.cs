@@ -40,7 +40,7 @@ namespace EduApp.Services
             var list = await Task.Run(() => _uow.CourseRepository.GetPagedList
             (
                 new PageInfo(request.Page, request.PageSize),
-                x => x.Title.StartsWith(request.Title ?? "")
+                x => x.Title.StartsWith(request.Title)
             ));
 
             var response = new CourseListResponse(list);
