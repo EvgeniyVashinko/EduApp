@@ -1,5 +1,6 @@
 ﻿using EduApp.Core.Entities;
 using EduApp.Core.Helpers;
+using EduApp.Core.Pagination;
 using EduApp.Core.Repositories;
 using EduApp.Core.Requests.Course;
 using EduApp.Core.Responses.Course;
@@ -30,6 +31,19 @@ namespace EduApp.Services
             }
 
             var response = new CourseResponse(course);
+
+            return response;
+        }
+
+        public async Task<CourseListResponse> GetCourseList(CourseListRequest request)
+        {
+            var list = await Task.Run(() => _uow.CourseRepository.GetPagedList
+            (
+                new PageInfo(request.Page, request.PageSize),
+                x => x.Title.StartsWith(request.Title)
+            ));
+
+            var response = new CourseListResponse(list);
 
             return response;
         }
