@@ -1,10 +1,13 @@
-<form>
+<form method="post" (ngSubmit)="registration()" [formGroup]="registerForm">
   <h1>Registration</h1>
+  <div class="errors-block">
+    <p *ngIf="error != ''" class="error__item">{{ error }}</p>
+  </div>
   <mat-form-field appearance="fill">
     <mat-label>First name</mat-label>
     <input
-      [(ngModel)]="firstName"
       name="firstName"
+      formControlName="firstName"
       matInput
       placeholder="My first name is..."
       required
@@ -13,8 +16,8 @@
   <mat-form-field appearance="fill">
     <mat-label>Last name</mat-label>
     <input
-      [(ngModel)]="lastName"
       name="lastName"
+      formControlName="lastName"
       matInput
       placeholder="My last name is..."
       required
@@ -24,18 +27,18 @@
     <mat-label>Email</mat-label>
     <input
       type="email"
-      [(ngModel)]="email"
       name="email"
+      formControlName="email"
       matInput
-      placeholder="My username is..."
+      placeholder="My email is..."
       required
     />
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Username</mat-label>
     <input
-      [(ngModel)]="username"
       name="username"
+      formControlName="username"
       matInput
       placeholder="My username is..."
       required
@@ -44,8 +47,8 @@
   <mat-form-field appearance="fill">
     <mat-label>Password</mat-label>
     <input
-      [(ngModel)]="password"
       name="password"
+      formControlName="password"
       matInput
       [type]="hide ? 'password' : 'text'"
       required
@@ -58,38 +61,47 @@
     <mat-label>Birthday</mat-label>
     <input
       type="date"
-      [(ngModel)]="birthday"
+      formControlName="birthday"
       name="birthday"
       matInput
-      placeholder="My username is..."
       required
     />
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Sex</mat-label>
-    <mat-select [(ngModel)]="sex" name="sex" required>
+    <mat-select name="sex" formControlName="sex" required>
       <mat-option value="true">Male</mat-option>
       <mat-option value="false">Female</mat-option>
     </mat-select>
   </mat-form-field>
-  <p>Avatar</p>
+  <div>
+    <label *ngIf="registerForm.get('imageUrl').value == ''" for="imageUrl"
+      >Choose image</label
+    >
+    <img
+      *ngIf="registerForm.get('imageUrl').value != ''"
+      [src]="registerForm.get('imageUrl').value"
+      alt="Avatar"
+    />
+    <button
+      class="image__delete"
+      *ngIf="registerForm.get('imageUrl').value != ''"
+      (click)="deleteImage()"
+      mat-icon-button
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
   <input
+    (change)="uploadImage($event.target.files[0])"
+    id="imageurl"
     type="file"
-    #UploadFileInput
-    id="fileUpload"
-    (change)="fileChangeEvent($event)"
-    name="fileUpload"
-    multiple="multiple"
-    accept="image/png, image/jpeg"
-    [(ngModel)]="avatar"
+    accept="image/*"
+    name="imageUrl"
+    value=""
   />
-  <button
-    mat-raised-button
-    color="primary"
-    type="submit"
-    (click)="registration()"
-    class="sign_up_btn"
-  >
+  <button mat-raised-button color="primary" type="submit" class="sign_up_btn">
     Sign up
   </button>
 </form>

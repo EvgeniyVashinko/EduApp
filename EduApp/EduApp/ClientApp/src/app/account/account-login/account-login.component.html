@@ -1,9 +1,12 @@
-<form>
+<form method="post" (ngSubmit)="login()" [formGroup]="loginForm">
   <h1>Login</h1>
+  <div class="errors-block">
+    <p *ngIf="error != ''" class="error__item">{{ error }}</p>
+  </div>
   <mat-form-field appearance="fill">
     <mat-label>Username</mat-label>
     <input
-      [(ngModel)]="username"
+      formControlName="username"
       name="username"
       matInput
       placeholder="My username is..."
@@ -13,7 +16,7 @@
   <mat-form-field appearance="fill">
     <mat-label>Enter your password</mat-label>
     <input
-      [(ngModel)]="password"
+      formControlName="password"
       name="password"
       matInput
       [type]="hide ? 'password' : 'text'"
