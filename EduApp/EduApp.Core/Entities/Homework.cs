@@ -10,7 +10,7 @@ namespace EduApp.Core.Entities
 
         public string Url { get; set; }
 
-        public byte Mark { get; set; }
+        public int Mark { get; set; }
 
         public Guid AccountId { get; set; }
 

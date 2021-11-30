@@ -46,6 +46,7 @@ namespace EduApp
             services.AddTransient<ILessonService, LessonService>();
             services.AddTransient<IReviewService, ReviewService>();
             services.AddTransient<ICommentService, CommentService>();
+            services.AddTransient<IHomeworkService, HomeworkService>();
 
             services.AddAuthentication(options =>
             {
