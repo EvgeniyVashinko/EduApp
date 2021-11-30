@@ -102,7 +102,7 @@ namespace EduApp.Services
             }
 
             var list = new List<Category>();
-            foreach (var categoryId in request.Categories)
+            foreach (var categoryId in request.Categories ?? new())
             {
                 var category = await Task.Run(() => _uow.CategoryRepository.Find(categoryId));
                 if (category is null)

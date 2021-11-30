@@ -1,4 +1,6 @@
 ﻿using EduApp.Core.Common;
+using EduApp.Core.Extensions;
+using EduApp.Core.Pagination;
 using EduApp.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -62,6 +64,14 @@ namespace EduApp.Repositories.Repositories
             }
 
             DbSet.Update(entity);
+        }
+
+        public PagedList<TEntity> GetPagedList(PageInfo pageInfo, Expression<Func<TEntity, bool>> predicate = null)
+        {
+            var query = MakeInclusions().Where(predicate ?? (x => true));
+            var pageItems = query.SelectPage(pageInfo).ToList();
+
+            return new PagedList<TEntity>(pageItems, query.Count(), pageInfo);
         }
 
         protected virtual IQueryable<TEntity> MakeInclusions() => DbSet;

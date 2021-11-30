@@ -7,6 +7,6 @@ namespace EduApp.Core.Repositories
 {
     public interface IReviewRepository : IRepository<Review, Guid>
     {
-        public PagedList<Review> GetPagedList(PageInfo pageInfo, Expression<Func<Review, bool>> predicate = null);
+
     }
 }

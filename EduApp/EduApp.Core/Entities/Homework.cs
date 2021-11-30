@@ -12,8 +12,6 @@ namespace EduApp.Core.Entities
 
         public byte Mark { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
-
         public Guid AccountId { get; set; }
 
         public Account Account { get; set; }
