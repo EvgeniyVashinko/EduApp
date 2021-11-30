@@ -1,4 +1,4 @@
-﻿using EduApp.Core.Requests.Lesson;
+﻿using EduApp.Core.Requests.Homework;
 using EduApp.Core.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,21 +11,21 @@ namespace EduApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LessonController : ControllerBase
+    public class HomeworkController : ControllerBase
     {
-        private readonly ILessonService _lessonService;
+        private readonly IHomeworkService _homeworkService;
 
-        public LessonController(ILessonService lessonService)
+        public HomeworkController(IHomeworkService homeworkService)
         {
-            _lessonService = lessonService;
+            _homeworkService = homeworkService;
         }
 
         [HttpGet("List")]
-        public async Task<IActionResult> GetLessonList([FromBody] LessonListRequest request)
+        public async Task<IActionResult> GetHomeworkList([FromBody] HomeworkListRequest request)
         {
             try
             {
-                var response = await _lessonService.GetLessonList(request);
+                var response = await _homeworkService.GetHomeworkList(request);
 
                 return Ok(response);
             }
@@ -36,13 +36,13 @@ namespace EduApp.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetLesson([FromRoute] GetLessonRequest request)
+        public async Task<IActionResult> GetHomework([FromRoute] GetHomeworkRequest request)
         {
             try
             {
-                var lesson = await _lessonService.GetLesson(request);
+                var homework = await _homeworkService.GetHomework(request);
 
-                return Ok(lesson);
+                return Ok(homework);
             }
             catch (Exception ex)
             {
@@ -51,13 +51,13 @@ namespace EduApp.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> RemoveLesson([FromRoute] RemoveLessonRequest request)
+        public async Task<IActionResult> RemoveHomework([FromRoute] RemoveHomeworkRequest request)
         {
             try
             {
-                var lesson = await _lessonService.RemoveLesson(request);
+                var homework = await _homeworkService.RemoveHomework(request);
 
-                return Ok(lesson);
+                return Ok(homework);
             }
             catch (Exception ex)
             {
@@ -66,13 +66,13 @@ namespace EduApp.Controllers
         }
 
         [HttpPost("Create")]
-        public async Task<IActionResult> CreateLesson([FromBody] CreateLessonRequest request)
+        public async Task<IActionResult> CreateHomework([FromBody] CreateHomeworkRequest request)
         {
             try
             {
-                var lesson = await _lessonService.CreateLesson(request);
+                var homework = await _homeworkService.CreateHomework(request);
 
-                return Ok(lesson);
+                return Ok(homework);
             }
             catch (Exception ex)
             {
@@ -81,13 +81,13 @@ namespace EduApp.Controllers
         }
 
         [HttpPost("Update/{id}")]
-        public async Task<IActionResult> UpdateLesson([FromBody] UpdateLessonRequest request)
+        public async Task<IActionResult> UpdateHomework([FromBody] UpdateHomeworkRequest request)
         {
             try
             {
-                var lesson = await _lessonService.UpdateLesson(request);
+                var homework = await _homeworkService.UpdateHomework(request);
 
-                return Ok(lesson);
+                return Ok(homework);
             }
             catch (Exception ex)
             {
