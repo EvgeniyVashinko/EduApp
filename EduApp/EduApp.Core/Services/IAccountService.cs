@@ -1,5 +1,5 @@
 ﻿using EduApp.Core.Requests;
-using EduApp.Core.Responses;
+using EduApp.Core.Responses.Auth;
 using System.Threading.Tasks;
 
 namespace EduApp.Core.Services

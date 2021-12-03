@@ -96,5 +96,50 @@ namespace EduApp.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost("AddParticipant")]
+        public async Task<IActionResult> AddParticipant([FromBody] ParticipantRequest request)
+        {
+            try
+            {
+                var course = await _courseService.AddParticipant(request);
+
+                return Ok(course);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("RemoveParticipant")]
+        public async Task<IActionResult> RemoveParticipant([FromBody] ParticipantRequest request)
+        {
+            try
+            {
+                var course = await _courseService.RemoveParticipant(request);
+
+                return Ok(course);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("ParticipantList")]
+        public async Task<IActionResult> GetCourseParticipantList([FromBody] ParticipantListRequest request)
+        {
+            try
+            {
+                var response = await _courseService.GetCourseParticipantList(request);
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

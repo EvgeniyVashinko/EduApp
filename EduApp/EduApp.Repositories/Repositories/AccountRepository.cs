@@ -22,7 +22,9 @@ namespace EduApp.Repositories.Repositories
 
         protected override IQueryable<Account> MakeInclusions()
         {
-            return DbSet.Include(x => x.Roles);
+            return DbSet.Include(x => x.Roles)
+                        .Include(x => x.UserInfo)
+                        .ThenInclude(x => x.Account);
         }
     }
 }
