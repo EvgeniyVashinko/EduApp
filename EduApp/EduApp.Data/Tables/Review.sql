@@ -15,8 +15,8 @@
 )
 GO
 
-CREATE INDEX [IX_Review_AccountId] ON [dbo].[Homework] ([AccountId])
+CREATE INDEX [IX_Review_AccountId] ON [dbo].[Review] ([AccountId])
 GO
 
-CREATE INDEX [IX_Review_LessonId] ON [dbo].[Homework] ([LessonId])
+CREATE INDEX [IX_Review_LessonId] ON [dbo].[Review] ([CourseId])
 GO

@@ -1,8 +1,9 @@
 ﻿using EduApp.Core.Entities;
 using EduApp.Core.Helpers;
+using EduApp.Core.Pagination;
 using EduApp.Core.Repositories;
 using EduApp.Core.Requests.User;
-using EduApp.Core.Responses;
+using EduApp.Core.Responses.User;
 using EduApp.Core.Services;
 using System.Threading.Tasks;
 
@@ -26,6 +27,22 @@ namespace EduApp.Services
             }
 
             var response = new UserResponse(user);
+
+            return response;
+        }
+
+        public async Task<UserListResponse> GetUserList(UserListRequest request)
+        {
+            var list = await Task.Run(() => _uow.UserInfoRepository.GetPagedList
+            (
+                new PageInfo(request.Page, request.PageSize),
+                x => x.FirstName.StartsWith(request.FirstName) &&
+                    x.LastName.StartsWith(request.LastName) &&
+                    x.Email.StartsWith(request.Email) &&
+                    x.Account.Username.StartsWith(request.UserName)
+            ));
+
+            var response = new UserListResponse(list);
 
             return response;
         }

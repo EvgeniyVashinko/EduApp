@@ -1,9 +1,9 @@
 ﻿CREATE TABLE [dbo].[CourseParticipants]
 (
 	[CourseParticipantsId] UNIQUEIDENTIFIER NOT NULL, 
-	[RoleId] UNIQUEIDENTIFIER NOT NULL
-	    CONSTRAINT [FK_CourseParticipants_Role] FOREIGN KEY
-        REFERENCES [dbo].[Role]([RoleId]),
+	[CourseId] UNIQUEIDENTIFIER NOT NULL
+	    CONSTRAINT [FK_CourseParticipants_Course] FOREIGN KEY
+        REFERENCES [dbo].[Course]([CourseId]),
     [AccountId] UNIQUEIDENTIFIER NOT NULL
 	    CONSTRAINT [FK_CourseParticipants_Account] FOREIGN KEY
         REFERENCES [dbo].[Account]([AccountId]),
@@ -12,8 +12,8 @@
 )
 GO
 
-CREATE INDEX [IX_CourseParticipants_RoleId] ON [dbo].[AccountRole] ([RoleId]);
+CREATE INDEX [IX_CourseParticipants_RCourseId] ON [dbo].[CourseParticipants] ([CourseId]);
 GO
 
-CREATE INDEX [IX_CourseParticipants_AccountId] ON [dbo].[AccountRole] ([AccountId]);
+CREATE INDEX [IX_CourseParticipants_AccountId] ON [dbo].[CourseParticipants] ([AccountId]);
 GO

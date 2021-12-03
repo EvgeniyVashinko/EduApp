@@ -1,6 +1,6 @@
 ﻿using EduApp.Core.Repositories;
 using EduApp.Core.Requests;
-using EduApp.Core.Responses;
+using EduApp.Core.Responses.Auth;
 using EduApp.Core.Services;
 using System.Threading.Tasks;
 
