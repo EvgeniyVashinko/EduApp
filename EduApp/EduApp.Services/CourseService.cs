@@ -1,9 +1,11 @@
 ﻿using EduApp.Core.Entities;
+using EduApp.Core.Extensions;
 using EduApp.Core.Helpers;
 using EduApp.Core.Pagination;
 using EduApp.Core.Repositories;
 using EduApp.Core.Requests.Course;
 using EduApp.Core.Responses.Course;
+using EduApp.Core.Responses.User;
 using EduApp.Core.Services;
 using System;
 using System.Collections.Generic;
@@ -144,6 +146,76 @@ namespace EduApp.Services
             var response = new CourseResponse(course);
 
             return response;
+        }
+
+        public async Task<CourseResponse> AddParticipant(ParticipantRequest request)
+        {
+            var course = await Task.Run(() => _uow.CourseRepository.Find(request.CourseId));
+            if (course is null)
+            {
+                throw new AppException("Course with such id not found", nameof(course));
+            }
+
+            var account = await Task.Run(() => _uow.AccountRepository.Find(request.AccountId));
+            if (account is null)
+            {
+                throw new AppException("Account with such id not found", nameof(account));
+            }
+
+            if (!course.Participants.Contains(account))
+            {
+                course.Participants.Add(account);
+
+                _uow.Commit();
+            }
+
+            var response = new CourseResponse(course);
+
+            return response;
+        }
+
+        public async Task<CourseResponse> RemoveParticipant(ParticipantRequest request)
+        {
+            var course = await Task.Run(() => _uow.CourseRepository.Find(request.CourseId));
+            if (course is null)
+            {
+                throw new AppException("Course with such id not found", nameof(course));
+            }
+
+            var account = await Task.Run(() => _uow.AccountRepository.Find(request.AccountId));
+            if (account is null)
+            {
+                throw new AppException("Account with such id not found", nameof(account));
+            }
+
+            if (course.Participants.Contains(account))
+            {
+                course.Participants.Remove(account);
+
+                _uow.Commit();
+            }
+
+            var response = new CourseResponse(course);
+
+            return response;
+        }
+
+        public async Task<UserListResponse> GetCourseParticipantList(ParticipantListRequest request)
+        {
+            var course = await Task.Run(() => _uow.CourseRepository.Find(request.CourseId));
+            if (course is null)
+            {
+                throw new AppException("Course with such id not found", nameof(course));
+            }
+
+            
+            var query = course.Participants.AsQueryable();
+            var pageInfo = new PageInfo(request.Page, request.PageSize);
+            var pageItems = query.SelectPage(pageInfo).Select(x => x.UserInfo).ToList();
+
+            var pl = new PagedList<UserInfo>(pageItems, query.Count(), pageInfo);
+
+            return new UserListResponse(pl);
         }
     }
 }

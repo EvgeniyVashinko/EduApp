@@ -22,6 +22,7 @@ namespace EduApp.Core.Entities
         public ICollection<Course> MyStartedCourses { get; set; }
 
         public ICollection<Course> MyOwnCourses { get; set; }
+        //public ICollection<Course> Courses { get; set; }
 
         public ICollection<Role> Roles { get; set; }
 
