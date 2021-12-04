@@ -6,7 +6,7 @@
     [Birthday] DATE NOT NULL, 
     [Sex] BIT NOT NULL,
     [Email] NVARCHAR(256) NOT NULL, 
-    [Image] VARBINARY(MAX) NULL,
+    [Image] NVARCHAR(MAX) NULL,
     [AccountId] UNIQUEIDENTIFIER NOT NULL
         CONSTRAINT [FK_UserInfo_Account] FOREIGN KEY
         REFERENCES [dbo].[Account]([AccountId]),

@@ -16,6 +16,7 @@ import {
   MatProgressSpinnerModule,
 } from "@angular/material";
 import { CourseModule } from "./course/course.module";
+import { UserModule } from "./user/user.module";
 
 @NgModule({
   declarations: [AppComponent, NavMenuComponent, HomeComponent],
@@ -29,6 +30,7 @@ import { CourseModule } from "./course/course.module";
     BrowserAnimationsModule,
     AccountModule,
     CourseModule,
+    UserModule,
     MatCardModule,
     MatButtonModule,
     MatProgressSpinnerModule,

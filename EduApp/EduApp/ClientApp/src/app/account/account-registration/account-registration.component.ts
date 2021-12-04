@@ -3,18 +3,8 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
+import { User } from "src/app/common/models/user";
 import { environment } from "src/environments/environment";
-
-interface userModel {
-  FirstName: string;
-  LastName: string;
-  Email: string;
-  Username: string;
-  Password: string;
-  Birthday: Date;
-  Sex: number;
-  ImageUrl: string;
-}
 
 @Component({
   selector: "app-account-registration",
@@ -37,17 +27,13 @@ export class AccountRegistrationComponent implements OnInit {
   apiUrl: string;
   error: string;
 
-  cookieService: CookieService;
-
   constructor(
     private http: HttpClient,
     private router: Router,
-    private cookieServiceParam: CookieService
+    private cookieService: CookieService
   ) {
     this.hide = true;
-    this.router = router;
     this.apiUrl = environment.apiUrl + "/api/Account/Registration";
-    this.cookieService = cookieServiceParam;
   }
 
   deleteImage() {
@@ -63,31 +49,24 @@ export class AccountRegistrationComponent implements OnInit {
   }
 
   registration() {
-    let user: userModel = {
-      FirstName: this.registerForm.get("firstName").value,
-      LastName: this.registerForm.get("lastName").value,
-      Email: this.registerForm.get("email").value,
-      Username: this.registerForm.get("username").value,
-      Password: this.registerForm.get("password").value,
-      Birthday: this.registerForm.get("birthday").value,
-      Sex: JSON.parse(this.registerForm.get("sex").value),
-      ImageUrl: this.registerForm.get("imageUrl").value,
+    let user: User = {
+      firstName: this.registerForm.get("firstName").value,
+      lastName: this.registerForm.get("lastName").value,
+      email: this.registerForm.get("email").value,
+      username: this.registerForm.get("username").value,
+      password: this.registerForm.get("password").value,
+      birthday: this.registerForm.get("birthday").value,
+      sex: JSON.parse(this.registerForm.get("sex").value),
+      image: this.registerForm.get("imageUrl").value,
     };
 
-    let headers = new HttpHeaders({
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET,POST,OPTIONS,DELETE,PUT",
-    });
-
-    let options = { headers: headers };
-
     if (this.registerForm.valid) {
-      this.http.post(this.apiUrl, user, options).subscribe(
+      this.http.post(this.apiUrl, user, environment.options).subscribe(
         (result: UserResponse) => {
           this.cookieService.set("token", result.token);
           this.cookieService.set("accountId", result.accountId);
-          this.router.navigate(["/"]);
           window.location.reload();
+          this.router.navigate(["/"]);
         },
         (error) => {
           this.error = error.message;

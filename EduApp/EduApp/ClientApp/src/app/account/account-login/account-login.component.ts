@@ -44,8 +44,8 @@ export class AccountLoginComponent implements OnInit {
       (result: UserResponse) => {
         this.cookieService.set("token", result.token);
         this.cookieService.set("accountId", result.accountId);
-        this.router.navigate(["/"]);
         window.location.reload();
+        this.router.navigate(["/"]);
       },
       (error) => {
         this.error = error.error;

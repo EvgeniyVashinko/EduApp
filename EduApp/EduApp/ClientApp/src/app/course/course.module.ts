@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { CourseViewComponent } from "../course-view/course-view.component";
+import { CourseViewComponent } from "./course-view/course-view.component";
 import { RouterModule } from "@angular/router";
 import {
   MatButtonModule,
@@ -8,9 +8,10 @@ import {
   MatExpansionModule,
   MatProgressSpinnerModule,
 } from "@angular/material";
+import { CourseCreateComponent } from "./course-create/course-create.component";
 
 @NgModule({
-  declarations: [CourseViewComponent],
+  declarations: [CourseViewComponent, CourseCreateComponent],
   imports: [
     CommonModule,
     RouterModule.forRoot([

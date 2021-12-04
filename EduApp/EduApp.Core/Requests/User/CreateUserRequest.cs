@@ -11,6 +11,6 @@ namespace EduApp.Core.Requests.User
         public string Password { get; set; }
         public DateTime Birthday { get; set; }
         public bool Sex { get; set; }
-        public byte[] Image { get; set; }
+        public string Image { get; set; }
     }
 }

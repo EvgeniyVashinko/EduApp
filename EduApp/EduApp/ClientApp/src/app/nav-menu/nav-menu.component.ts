@@ -9,6 +9,7 @@ import { CookieService } from "ngx-cookie-service";
 export class NavMenuComponent {
   isExpanded = false;
   isAuthorized = false;
+  accountId = null;
 
   constructor(private cookieService: CookieService) {
     if (
@@ -16,6 +17,7 @@ export class NavMenuComponent {
       this.cookieService.get("accountId") != ""
     ) {
       this.isAuthorized = true;
+      this.accountId = this.cookieService.get("accountId");
     }
   }
 
