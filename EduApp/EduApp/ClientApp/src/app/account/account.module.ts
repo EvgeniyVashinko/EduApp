@@ -9,7 +9,7 @@ import { MatCardModule } from "@angular/material";
 import { MatButtonModule } from "@angular/material";
 import { MatSelectModule } from "@angular/material";
 import { MatToolbarModule } from "@angular/material";
-import { AccountRegistrationComponent } from "../account-registration/account-registration.component";
+import { AccountRegistrationComponent } from "./account-registration/account-registration.component";
 import { AccountLoginComponent } from "./account-login/account-login.component";
 
 @NgModule({

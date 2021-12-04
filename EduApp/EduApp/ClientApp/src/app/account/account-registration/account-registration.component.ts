@@ -1,7 +1,8 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
+import { CookieService } from "ngx-cookie-service";
 import { environment } from "src/environments/environment";
 
 interface userModel {
@@ -36,10 +37,17 @@ export class AccountRegistrationComponent implements OnInit {
   apiUrl: string;
   error: string;
 
-  constructor(private http: HttpClient, private router: Router) {
+  cookieService: CookieService;
+
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private cookieServiceParam: CookieService
+  ) {
     this.hide = true;
     this.router = router;
-    this.apiUrl = environment.apiUrl + "/Account/Registration";
+    this.apiUrl = environment.apiUrl + "/api/Account/Registration";
+    this.cookieService = cookieServiceParam;
   }
 
   deleteImage() {
@@ -62,14 +70,25 @@ export class AccountRegistrationComponent implements OnInit {
       Username: this.registerForm.get("username").value,
       Password: this.registerForm.get("password").value,
       Birthday: this.registerForm.get("birthday").value,
-      Sex: this.registerForm.get("sex").value,
+      Sex: JSON.parse(this.registerForm.get("sex").value),
       ImageUrl: this.registerForm.get("imageUrl").value,
     };
 
+    let headers = new HttpHeaders({
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,POST,OPTIONS,DELETE,PUT",
+    });
+
+    let options = { headers: headers };
+
     if (this.registerForm.valid) {
-      this.http.post(this.apiUrl, user).subscribe(
-        (result) => {
+      this.http.post(this.apiUrl, user, options).subscribe(
+        (result: UserResponse) => {
+          console.log(result);
+          this.cookieService.set("token", result.token);
+          this.cookieService.set("accountId", result.accountId);
           this.router.navigate(["/"]);
+          window.location.reload();
         },
         (error) => {
           this.error = error.error;

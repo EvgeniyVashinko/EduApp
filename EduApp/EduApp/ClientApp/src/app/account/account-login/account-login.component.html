@@ -1,4 +1,4 @@
-<form method="post" (ngSubmit)="login()" [formGroup]="loginForm">
+<form method="post" (ngSubmit)="signIn()" [formGroup]="loginForm">
   <h1>Login</h1>
   <div class="errors-block">
     <p *ngIf="error != ''" class="error__item">{{ error }}</p>
@@ -26,7 +26,5 @@
       <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
     </button>
   </mat-form-field>
-  <button mat-raised-button color="primary" type="submit" (click)="signIn()">
-    Sign in
-  </button>
+  <button mat-raised-button color="primary" type="submit">Sign in</button>
 </form>
