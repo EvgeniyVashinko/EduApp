@@ -20,7 +20,7 @@ namespace EduApp.Controllers
             _lessonService = lessonService;
         }
 
-        [HttpGet("List")]
+        [HttpPost("List")]
         public async Task<IActionResult> GetLessonList([FromBody] LessonListRequest request)
         {
             try

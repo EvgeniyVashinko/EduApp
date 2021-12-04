@@ -15,20 +15,23 @@ export class CourseService {
   getAllCourses(param): Observable<PagedListContainer<Course>> {
     return this.httpClient.post<PagedListContainer<Course>>(
       environment.apiUrl + "/api/course/list",
-      param
+      param,
+      environment.options
     );
   }
 
   getCourseById(id: string): Observable<Course> {
     return this.httpClient.get<Course>(
-      environment.apiUrl + `/api/course/${id}`
+      environment.apiUrl + `/api/course/${id}`,
+      environment.options
     );
   }
 
   createCourse(course: Course) {
     return this.httpClient.post(
       environment.apiUrl + `/api/course/create`,
-      course
+      course,
+      environment.options
     );
   }
 }

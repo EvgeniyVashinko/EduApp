@@ -84,14 +84,13 @@ export class AccountRegistrationComponent implements OnInit {
     if (this.registerForm.valid) {
       this.http.post(this.apiUrl, user, options).subscribe(
         (result: UserResponse) => {
-          console.log(result);
           this.cookieService.set("token", result.token);
           this.cookieService.set("accountId", result.accountId);
           this.router.navigate(["/"]);
           window.location.reload();
         },
         (error) => {
-          this.error = error.error;
+          this.error = error.message;
           console.log(error);
         }
       );

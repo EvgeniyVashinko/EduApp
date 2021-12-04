@@ -8,7 +8,7 @@ import { CourseService } from "../common/services/course.service";
   templateUrl: "./home.component.html",
 })
 export class HomeComponent {
-  courses: Course[];
+  courses: Course[] = null;
 
   constructor(private courseService: CourseService) {}
 

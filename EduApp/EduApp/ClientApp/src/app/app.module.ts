@@ -10,7 +10,11 @@ import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { HomeComponent } from "./home/home.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CookieService } from "ngx-cookie-service";
-import { MatButtonModule, MatCardModule } from "@angular/material";
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatProgressSpinnerModule,
+} from "@angular/material";
 import { CourseModule } from "./course/course.module";
 
 @NgModule({
@@ -27,6 +31,7 @@ import { CourseModule } from "./course/course.module";
     CourseModule,
     MatCardModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],

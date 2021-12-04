@@ -1,8 +1,13 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { CourseViewComponent } from "./course-view/course-view.component";
+import { CourseViewComponent } from "../course-view/course-view.component";
 import { RouterModule } from "@angular/router";
-import { MatButtonModule, MatCardModule } from "@angular/material";
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatExpansionModule,
+  MatProgressSpinnerModule,
+} from "@angular/material";
 
 @NgModule({
   declarations: [CourseViewComponent],
@@ -16,6 +21,8 @@ import { MatButtonModule, MatCardModule } from "@angular/material";
     ]),
     MatCardModule,
     MatButtonModule,
+    MatExpansionModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class CourseModule {}
