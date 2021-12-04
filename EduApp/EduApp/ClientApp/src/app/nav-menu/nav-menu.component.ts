@@ -8,11 +8,9 @@ import { CookieService } from "ngx-cookie-service";
 })
 export class NavMenuComponent {
   isExpanded = false;
-  cookieService: CookieService;
   isAuthorized = false;
 
-  constructor(private cookieServiceParam: CookieService) {
-    this.cookieService = cookieServiceParam;
+  constructor(private cookieService: CookieService) {
     if (
       this.cookieService.get("token") != "" &&
       this.cookieService.get("accountId") != ""
