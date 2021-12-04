@@ -20,7 +20,7 @@ namespace EduApp.Services
 
         public async Task<UserResponse> GetUser(GetUserRequest request)
         {
-            var user = await Task.Run(() => _uow.UserInfoRepository.Find(request.Id));
+            var user = await Task.Run(() => _uow.UserInfoRepository.Find(x => x.AccountId == request.Id));
             if (user is null)
             {
                 throw new AppException("User not found");

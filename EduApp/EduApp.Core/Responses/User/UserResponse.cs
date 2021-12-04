@@ -12,7 +12,7 @@ namespace EduApp.Core.Responses.User
         public string UserName { get; set; }
         public DateTime Birthday { get; set; }
         public bool Sex { get; set; }
-        public byte[] Image { get; set; }
+        public string Image { get; set; }
         public UserResponse()
         {
         }
