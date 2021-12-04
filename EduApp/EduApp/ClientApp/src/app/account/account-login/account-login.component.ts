@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { Router } from "@angular/router";
 import { FormControl, FormGroup } from "@angular/forms";
+import { CookieService } from "ngx-cookie-service";
 
 interface userModel {
   username: string;
@@ -17,14 +18,20 @@ interface userModel {
 export class AccountLoginComponent implements OnInit {
   hide: boolean;
   error: string;
+  cookieService: CookieService;
 
   loginForm = new FormGroup({
     username: new FormControl(""),
     password: new FormControl(""),
   });
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private cookieServiceParam: CookieService
+  ) {
     this.hide = true;
+    this.cookieService = cookieServiceParam;
   }
 
   signIn() {
@@ -34,8 +41,11 @@ export class AccountLoginComponent implements OnInit {
     };
 
     this.http.post(`${environment.apiUrl}/api/Account/Login`, user).subscribe(
-      (result) => {
+      (result: UserResponse) => {
+        this.cookieService.set("token", result.token);
+        this.cookieService.set("accountId", result.accountId);
         this.router.navigate(["/"]);
+        window.location.reload();
       },
       (error) => {
         this.error = error.error;

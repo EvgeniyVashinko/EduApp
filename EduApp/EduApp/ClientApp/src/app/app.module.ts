@@ -9,6 +9,13 @@ import { AppComponent } from "./app.component";
 import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { HomeComponent } from "./home/home.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { CookieService } from "ngx-cookie-service";
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatProgressSpinnerModule,
+} from "@angular/material";
+import { CourseModule } from "./course/course.module";
 
 @NgModule({
   declarations: [AppComponent, NavMenuComponent, HomeComponent],
@@ -21,8 +28,12 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     ]),
     BrowserAnimationsModule,
     AccountModule,
+    CourseModule,
+    MatCardModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

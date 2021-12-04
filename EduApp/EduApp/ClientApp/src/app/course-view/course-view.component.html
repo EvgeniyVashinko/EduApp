@@ -1,0 +1,38 @@
+<mat-card class="course__item" *ngIf="course != null; else elseBlock">
+  <mat-card-title>{{ course.title }}</mat-card-title>
+  <mat-card-subtitle>Category: </mat-card-subtitle>
+  <mat-card-content>
+    <b>Description: </b>{{ course.description }}</mat-card-content
+  >
+
+  <mat-card-content>
+    <mat-accordion>
+      <mat-expansion-panel
+        (opened)="getLessons()"
+        (closed)="lessonsOpenState = false"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title> List of the lessons </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-spinner
+          *ngIf="courseLessons === null; else lessonsNullBlock"
+        ></mat-spinner>
+        <ng-template #lessonsNullBlock>
+          <p *ngFor="let lesson of courseLessons">
+            #{{ courseLessons.indexOf(lesson) + 1 }}
+            <b>{{ lesson.title }}</b>
+          </p>
+        </ng-template>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-card-content>
+
+  <mat-card-subtitle
+    >Price: <b>{{ course.price }}$</b></mat-card-subtitle
+  >
+  <button mat-raised-button class="main-button" color="primary">Buy</button>
+  <a mat-stroked-button [routerLink]="['/']">Back to main</a>
+</mat-card>
+<ng-template #elseBlock>
+  <mat-spinner></mat-spinner>
+</ng-template>
