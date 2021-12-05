@@ -16,9 +16,67 @@
         >Sex: <b>{{ user.sex ? "male" : "female" }}</b></mat-card-content
       >
     </div>
+
+    <div *ngIf="isMyPage">
+      <a [routerLink]="['/']" class="btn btn-warning">Edit profile</a>
+    </div>
+
     <mat-tab-group>
-      <mat-tab label="My courses"> Content 1 </mat-tab>
-      <mat-tab label="My OWN courses"> Content 2 </mat-tab>
+      <mat-tab label="Participating courses">
+        <mat-spinner
+          *ngIf="
+            myParticipatingCourses === null;
+            else myParticipatingCoursesElseBlock
+          "
+        ></mat-spinner>
+        <ng-template #myParticipatingCoursesElseBlock>
+          <div
+            *ngIf="myParticipatingCourses.length === 0"
+            style="padding-top: 15px"
+          >
+            There is no participating courses
+          </div>
+          <a
+            *ngIf="isMyPage"
+            [routerLink]="['/']"
+            class="btn btn-success"
+            style="display: block; margin-top: 20px"
+            >Find a new one</a
+          >
+          <mat-card *ngFor="let course of myParticipatingCourses">
+            <mat-card-title>{{ course.title }}</mat-card-title>
+            <div *ngIf="isMyPage">
+              <a [routerLink]="['/']" class="btn btn-primary">Continue study</a>
+              <a [routerLink]="['/']" class="btn btn-info">Add a rewiew</a>
+            </div>
+            <div *ngIf="!isMyPage">
+              <a [routerLink]="['/course', course.id]" class="btn btn-primary"
+                >Got it</a
+              >
+            </div>
+          </mat-card>
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="Own courses"
+        ><mat-spinner
+          *ngIf="myOwnCourses === null; else myOwnCoursesElseBlock"
+        ></mat-spinner>
+        <ng-template #myOwnCoursesElseBlock>
+          <div *ngIf="myOwnCourses.length === 0">There is no own courses</div>
+
+          <a
+            *ngIf="isMyPage"
+            [routerLink]="['/']"
+            class="btn btn-success"
+            style="display: block; margin-top: 20px"
+            >Add new one</a
+          >
+          <app-course-view
+            *ngFor="let course of myOwnCourses"
+            [courseId]="course.id"
+          ></app-course-view>
+        </ng-template>
+      </mat-tab>
     </mat-tab-group>
   </mat-card>
 </ng-template>

@@ -65,8 +65,9 @@ export class AccountRegistrationComponent implements OnInit {
         (result: UserResponse) => {
           this.cookieService.set("token", result.token);
           this.cookieService.set("accountId", result.accountId);
-          window.location.reload();
-          this.router.navigate(["/"]);
+          this.router.navigate(["/"]).then(() => {
+            window.location.reload();
+          });
         },
         (error) => {
           this.error = error.message;

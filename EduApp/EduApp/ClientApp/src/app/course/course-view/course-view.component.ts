@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { CookieService } from "ngx-cookie-service";
 import { Lesson } from "src/app/common/models/lesson";
 import { PagedListContainer } from "src/app/common/models/pagedList";
 import { LessonService } from "src/app/common/services/lesson.service";
@@ -12,23 +13,31 @@ import { CourseService } from "../../common/services/course.service";
   styleUrls: ["./course-view.component.css"],
 })
 export class CourseViewComponent implements OnInit {
-  course: Course;
-  lessonsOpenState: boolean = false;
-  courseLessons: Lesson[] = null;
-
-  @Input() courseId: string = this.activatedRoute.snapshot.paramMap.get("id");
-
   constructor(
     private activatedRoute: ActivatedRoute,
     private courseService: CourseService,
-    private lessonService: LessonService
+    private lessonService: LessonService,
+    private cookieService: CookieService
   ) {}
 
+  @Input("courseId") courseId: string;
+
+  course: Course;
+  isOwner: boolean = false;
+  lessonsOpenState: boolean = false;
+  courseLessons: Lesson[] = null;
+
   ngOnInit() {
+    if (this.courseId === "" || this.courseId === undefined) {
+      this.courseId = this.activatedRoute.snapshot.paramMap.get("id");
+    }
     this.courseService
       .getCourseById(this.courseId)
       .subscribe((result: Course) => {
         this.course = result;
+        if (this.course.ownerId === this.cookieService.get("accountId")) {
+          this.isOwner = true;
+        }
       });
   }
 

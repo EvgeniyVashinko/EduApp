@@ -5,3 +5,7 @@ mat-card-content {
 .userInfo__main {
   margin: 15px 0px;
 }
+
+.btn {
+  margin-right: 15px;
+}
