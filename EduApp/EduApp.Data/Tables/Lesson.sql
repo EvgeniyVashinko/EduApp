@@ -5,7 +5,8 @@
         CONSTRAINT [FK_Lesson_Course] FOREIGN KEY
         REFERENCES [dbo].[Course]([CourseId]), 
     [Title] NVARCHAR(150) NOT NULL, 
-    [Description] NVARCHAR(MAX) NULL, 
+    [Description] NVARCHAR(MAX) NULL,
+    [ExternalLink] NVARCHAR(MAX) NULL,
     [CreationDate] DATETIME2 NOT NULL, 
     [UpdatedDate] DATETIME2 NULL,
 

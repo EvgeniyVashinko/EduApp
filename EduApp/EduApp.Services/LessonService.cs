@@ -60,6 +60,7 @@ namespace EduApp.Services
             {
                 Title = request.Title,
                 Description = request.Description,
+                ExternalLink = request.ExternalLink,
                 CreationDate = DateTime.Now,
                 CourseId = request.CourseId,
             };
@@ -89,6 +90,7 @@ namespace EduApp.Services
 
             lesson.Title = request.Title;
             lesson.Description = request.Description;
+            lesson.ExternalLink = request.ExternalLink;
             lesson.UpdatedDate = DateTime.Now;
             lesson.CourseId = request.CourseId;
 

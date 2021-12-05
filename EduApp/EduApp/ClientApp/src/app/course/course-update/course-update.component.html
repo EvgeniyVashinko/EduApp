@@ -46,7 +46,32 @@
     *ngIf="course !== null"
     [routerLink]="['/lesson/create', course.id]"
     class="btn btn-success"
-    style="display: block"
+    style="display: block; margin: 15px 0px"
     >Add new one</a
   >
+  <mat-spinner *ngIf="lessons === null; else lessonElseBlock"></mat-spinner>
+  <ng-template #lessonElseBlock>
+    <mat-card *ngFor="let lesson of lessons">
+      <mat-card-title
+        >Lesson #{{ lessons.indexOf(lesson) + 1 }}
+        <b>{{ lesson.title }}</b></mat-card-title
+      >
+      <mat-card-content
+        >Description: <b>{{ lesson.description }}</b></mat-card-content
+      >
+      <a
+        *ngIf="lesson !== null"
+        [routerLink]="['/lesson/update', lesson.id]"
+        class="btn btn-warning"
+        style="margin-right: 10px"
+        >Edit</a
+      >
+      <a
+        *ngIf="lesson !== null"
+        [routerLink]="['/lesson/update', lesson.id]"
+        class="btn btn-danger"
+        >Delete</a
+      >
+    </mat-card>
+  </ng-template>
 </section>

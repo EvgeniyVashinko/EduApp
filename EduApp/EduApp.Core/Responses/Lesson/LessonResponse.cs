@@ -8,6 +8,7 @@ namespace EduApp.Core.Responses.Lesson
         public Guid CourseId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public string ExternalLink { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime UpdatedDate { get; set; }
 
