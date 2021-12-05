@@ -17,6 +17,7 @@ import {
 } from "@angular/material";
 import { CourseModule } from "./course/course.module";
 import { UserModule } from "./user/user.module";
+import { LessonModule } from "./lesson/lesson.module";
 
 @NgModule({
   declarations: [AppComponent, NavMenuComponent, HomeComponent],
@@ -31,6 +32,7 @@ import { UserModule } from "./user/user.module";
     AccountModule,
     CourseModule,
     UserModule,
+    LessonModule,
     MatCardModule,
     MatButtonModule,
     MatProgressSpinnerModule,

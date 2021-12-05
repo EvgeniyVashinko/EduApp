@@ -40,3 +40,13 @@
     Update general info
   </button>
 </form>
+<section style="padding: 20px 0px">
+  <h2>Lessons:</h2>
+  <a
+    *ngIf="course !== null"
+    [routerLink]="['/lesson/create', course.id]"
+    class="btn btn-success"
+    style="display: block"
+    >Add new one</a
+  >
+</section>

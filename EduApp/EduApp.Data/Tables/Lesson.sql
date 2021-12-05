@@ -7,8 +7,7 @@
     [Title] NVARCHAR(150) NOT NULL, 
     [Description] NVARCHAR(MAX) NULL, 
     [CreationDate] DATETIME2 NOT NULL, 
-    [UpdatedDate] DATETIME2 NULL, 
-    [RecommendedTime] DATETIME2 NULL, 
+    [UpdatedDate] DATETIME2 NULL,
 
     CONSTRAINT [PK_Lesson] PRIMARY KEY ([LessonId]), 
 )

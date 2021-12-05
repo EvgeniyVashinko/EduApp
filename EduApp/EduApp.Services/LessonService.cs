@@ -60,7 +60,6 @@ namespace EduApp.Services
             {
                 Title = request.Title,
                 Description = request.Description,
-                RecommendedTime = request.RecommendedTime,
                 CreationDate = DateTime.Now,
                 CourseId = request.CourseId,
             };
@@ -90,7 +89,6 @@ namespace EduApp.Services
 
             lesson.Title = request.Title;
             lesson.Description = request.Description;
-            lesson.RecommendedTime = request.RecommendedTime;
             lesson.UpdatedDate = DateTime.Now;
             lesson.CourseId = request.CourseId;
 

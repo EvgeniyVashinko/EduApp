@@ -14,8 +14,6 @@ namespace EduApp.Core.Entities
 
         public DateTime UpdatedDate { get; set; }
 
-        public DateTime RecommendedTime { get; set; }
-
         public Guid CourseId { get; set; }
 
         public Course Course { get; set; }
