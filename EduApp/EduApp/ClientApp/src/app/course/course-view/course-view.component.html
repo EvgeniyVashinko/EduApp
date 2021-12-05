@@ -31,7 +31,9 @@
     >Price: <b>{{ course.price }}$</b></mat-card-subtitle
   >
   <div *ngIf="isOwner; else elseButtonBlock">
-    <a [routerLink]="['/']" class="btn btn-warning">Edit</a>
+    <a [routerLink]="['/course/update', course.id]" class="btn btn-warning"
+      >Edit</a
+    >
     <a [routerLink]="['/']" class="btn btn-danger">Delete</a>
     <a [routerLink]="['/']" class="btn btn-info">Rewiew course hometasks</a>
   </div>
