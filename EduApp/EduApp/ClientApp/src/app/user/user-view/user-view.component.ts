@@ -13,10 +13,11 @@ import { UserService } from "src/app/common/services/user.service";
   styleUrls: ["./user-view.component.css"],
 })
 export class UserViewComponent implements OnInit {
-  @Input() userId: string = this.activatedRoute.snapshot.paramMap.get("id");
+  userId: string = this.activatedRoute.snapshot.paramMap.get("id");
 
   user: User = null;
 
+  isMyPage: boolean = false;
   myOwnCourses: Course[] = null;
   myParticipatingCourses: Course[] = null;
 
@@ -32,6 +33,10 @@ export class UserViewComponent implements OnInit {
     if (this.userId === "myProfile") {
       this.userId = this.cookieService.get("accountId");
     }
+
+    if (this.userId === this.cookieService.get("accountId")) {
+      this.isMyPage = true;
+    }
     this.userService.getUserById(this.userId).subscribe(
       (result: User) => {
         this.user = result;
@@ -41,6 +46,7 @@ export class UserViewComponent implements OnInit {
       }
     );
 
+    this.getMyParticipatingCourses();
     this.getMyOwnCourses();
   }
 

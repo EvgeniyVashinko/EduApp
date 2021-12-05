@@ -33,9 +33,12 @@
   <div *ngIf="isOwner; else elseButtonBlock">
     <a [routerLink]="['/']" class="btn btn-warning">Edit</a>
     <a [routerLink]="['/']" class="btn btn-danger">Delete</a>
+    <a [routerLink]="['/']" class="btn btn-info">Rewiew course hometasks</a>
   </div>
   <ng-template #elseButtonBlock>
-    <button mat-raised-button class="main-button" color="primary">Buy</button>
+    <button mat-raised-button class="main-button" color="primary">
+      Got it
+    </button>
     <a mat-stroked-button [routerLink]="['/']">Back to main</a>
   </ng-template>
 </mat-card>
