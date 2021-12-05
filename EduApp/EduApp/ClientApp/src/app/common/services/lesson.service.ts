@@ -19,4 +19,12 @@ export class LessonService {
       environment.options
     );
   }
+
+  createLesson(lesson: Partial<Lesson>) {
+    return this.httpClient.post<Lesson>(
+      environment.apiUrl + "/api/lesson/create",
+      lesson,
+      environment.options
+    );
+  }
 }

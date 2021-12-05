@@ -8,7 +8,7 @@ namespace EduApp.Core.Responses.Lesson
         public Guid CourseId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public DateTime RecommendedTime { get; set; }
+        public string ExternalLink { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime UpdatedDate { get; set; }
 
@@ -22,7 +22,6 @@ namespace EduApp.Core.Responses.Lesson
             CourseId = lesson.CourseId;
             Title = lesson.Title;
             Description = lesson.Description;
-            RecommendedTime = lesson.RecommendedTime;
             CreationDate = lesson.CreationDate;
             UpdatedDate = lesson.UpdatedDate;
         }

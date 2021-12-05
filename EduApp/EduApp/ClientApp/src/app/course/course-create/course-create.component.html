@@ -1,1 +1,40 @@
-<p>course-create works!</p>
+<form method="post" (ngSubmit)="createCourse()" [formGroup]="createCourseForm">
+  <h1>Creating new course</h1>
+  <div class="errors-block">
+    <p *ngIf="error != ''" class="error__item">{{ error }}</p>
+  </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Title</mat-label>
+    <input
+      name="title"
+      formControlName="title"
+      matInput
+      placeholder="Course title"
+      required
+    />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <input
+      name="description"
+      formControlName="description"
+      matInput
+      placeholder="Course description"
+      required
+    />
+  </mat-form-field>
+  <mat-form-field appearance="fill" floatLabel="always">
+    <mat-label>Price</mat-label>
+    <input
+      matInput
+      type="number"
+      formControlName="price"
+      class="example-right-align"
+      placeholder="0"
+      required
+      min="0"
+    />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Create course</button>
+</form>

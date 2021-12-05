@@ -6,15 +6,36 @@ import {
   MatButtonModule,
   MatCardModule,
   MatExpansionModule,
+  MatFormFieldModule,
+  MatInputModule,
   MatProgressSpinnerModule,
+  MatSnackBarModule,
 } from "@angular/material";
 import { CourseCreateComponent } from "./course-create/course-create.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { BrowserModule } from "@angular/platform-browser";
+import { CourseUpdateComponent } from "./course-update/course-update.component";
 
 @NgModule({
-  declarations: [CourseViewComponent, CourseCreateComponent],
+  declarations: [
+    CourseViewComponent,
+    CourseCreateComponent,
+    CourseUpdateComponent,
+  ],
   imports: [
     CommonModule,
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
+      {
+        path: "course/create",
+        component: CourseCreateComponent,
+      },
+      {
+        path: "course/update/:id",
+        component: CourseUpdateComponent,
+      },
       {
         path: "course/:id",
         component: CourseViewComponent,
@@ -24,6 +45,9 @@ import { CourseCreateComponent } from "./course-create/course-create.component";
     MatButtonModule,
     MatExpansionModule,
     MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSnackBarModule,
   ],
   exports: [CourseViewComponent],
 })

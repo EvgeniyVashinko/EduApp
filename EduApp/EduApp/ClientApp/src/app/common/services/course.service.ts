@@ -28,8 +28,16 @@ export class CourseService {
   }
 
   createCourse(course: Course) {
-    return this.httpClient.post(
+    return this.httpClient.post<Course>(
       environment.apiUrl + `/api/course/create`,
+      course,
+      environment.options
+    );
+  }
+
+  updateCourse(course: Course) {
+    return this.httpClient.post<Course>(
+      environment.apiUrl + "/api/course/update/" + course.id,
       course,
       environment.options
     );
