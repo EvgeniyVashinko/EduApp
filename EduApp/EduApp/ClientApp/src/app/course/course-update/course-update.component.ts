@@ -60,11 +60,20 @@ export class CourseUpdateComponent implements OnInit {
   }
 
   updateCourse() {
-    this.course.title = this.updateCourseForm.get("title").value;
-    this.course.description = this.updateCourseForm.get("description").value;
-    this.course.price = this.updateCourseForm.get("price").value;
-    this.courseService.updateCourse(this.course).subscribe((result) => {
-      this._snackBar.open("Course updated", "Ok");
+    if (this.updateCourseForm.valid) {
+      this.course.title = this.updateCourseForm.get("title").value;
+      this.course.description = this.updateCourseForm.get("description").value;
+      this.course.price = this.updateCourseForm.get("price").value;
+      this.courseService.updateCourse(this.course).subscribe((result) => {
+        this._snackBar.open("Course updated", "Ok");
+      });
+    }
+  }
+
+  deleteLesson(id: string) {
+    this.lessonService.deleteLesson(id).subscribe(() => {
+      this._snackBar.open("Lesson deleted", "Ok");
+      this.ngOnInit();
     });
   }
 }

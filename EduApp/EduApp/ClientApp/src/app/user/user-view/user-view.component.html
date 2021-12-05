@@ -10,7 +10,7 @@
         >Last name: <b>{{ user.lastName }}</b></mat-card-content
       >
       <mat-card-content
-        >Birthday: <b>{{ user.birthday }}</b></mat-card-content
+        >Birthday: <b>{{ user.birthday | date }}</b></mat-card-content
       >
       <mat-card-content
         >Sex: <b>{{ user.sex ? "male" : "female" }}</b></mat-card-content

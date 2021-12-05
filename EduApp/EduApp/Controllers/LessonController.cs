@@ -35,7 +35,7 @@ namespace EduApp.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpPost("{id}")]
         public async Task<IActionResult> GetLesson([FromRoute] GetLessonRequest request)
         {
             try

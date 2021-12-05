@@ -18,6 +18,7 @@ export class LessonCreateComponent implements OnInit {
   createLessonForm = new FormGroup({
     title: new FormControl(""),
     description: new FormControl(""),
+    externalLink: new FormControl(""),
   });
 
   error: string;
@@ -32,24 +33,27 @@ export class LessonCreateComponent implements OnInit {
   ngOnInit() {}
 
   createLesson() {
-    this.courseService.getCourseById(this.courseId).subscribe(
-      (result: Course) => {
-        if (result.ownerId !== this.cookieService.get("accountId")) {
-          this.router.navigate(["/user/myProfile"]);
+    if (this.createLessonForm.valid) {
+      this.courseService.getCourseById(this.courseId).subscribe(
+        (result: Course) => {
+          if (result.ownerId !== this.cookieService.get("accountId")) {
+            this.router.navigate(["/user/myProfile"]);
+          }
+          let lesson: Partial<Lesson> = {
+            title: this.createLessonForm.get("title").value,
+            description: this.createLessonForm.get("description").value,
+            externalLink: this.createLessonForm.get("externalLink").value,
+            courseId: this.courseId,
+          };
+          this.lessonService.createLesson(lesson).subscribe((result) => {
+            this.router.navigate(["/course/update", this.courseId]);
+          });
+        },
+        (error) => {
+          this.error = error;
+          console.log(error);
         }
-        let lesson: Partial<Lesson> = {
-          title: this.createLessonForm.get("title").value,
-          description: this.createLessonForm.get("description").value,
-          courseId: this.courseId,
-        };
-        this.lessonService.createLesson(lesson).subscribe((result) => {
-          this.router.navigate(["/course/update", this.courseId]);
-        });
-      },
-      (error) => {
-        this.error = error;
-        console.log(error);
-      }
-    );
+      );
+    }
   }
 }
