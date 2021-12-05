@@ -78,4 +78,7 @@
   <ItemGroup>
     <RefactorLog Include="EduApp.Data.refactorlog" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="EduApp.Data.publish.xml" />
+  </ItemGroup>
 </Project>
