@@ -9,6 +9,7 @@ namespace EduApp.Core.Responses.Course
         public string Title { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
+        public Guid OwnerId { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime UpdatedDate { get; set; }
 
@@ -23,6 +24,7 @@ namespace EduApp.Core.Responses.Course
             Title = course.Title;
             Description = course.Description;
             Price = course.Price;
+            OwnerId = course.OwnerId;
             CreationDate = course.CreationDate;
             UpdatedDate = course.UpdatedDate;
         }

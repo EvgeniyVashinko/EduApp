@@ -17,8 +17,49 @@
       >
     </div>
     <mat-tab-group>
-      <mat-tab label="My courses"> Content 1 </mat-tab>
-      <mat-tab label="My OWN courses"> Content 2 </mat-tab>
+      <mat-tab label="My courses">
+        <mat-spinner
+          *ngIf="
+            myParticipatingCourses === null;
+            else myParticipatingCoursesElseBlock
+          "
+        ></mat-spinner>
+        <ng-template #myParticipatingCoursesElseBlock>
+          <div *ngIf="myParticipatingCourses.length === 0">
+            There is no courses in which you are participating
+          </div>
+          <a
+            [routerLink]="['/']"
+            class="btn btn-success"
+            style="display: block; margin-top: 20px"
+            >Find a new one</a
+          >
+          <mat-card *ngFor="let course of myParticipatingCourses">
+            <mat-card-title>{{ course.title }}</mat-card-title>
+          </mat-card>
+        </ng-template>
+      </mat-tab>
+      <mat-tab label="My OWN courses"
+        ><mat-spinner
+          *ngIf="myOwnCourses === null; else myOwnCoursesElseBlock"
+        ></mat-spinner>
+        <ng-template #myOwnCoursesElseBlock>
+          <div *ngIf="myOwnCourses.length === 0">
+            There is no your own courses
+          </div>
+
+          <a
+            [routerLink]="['/']"
+            class="btn btn-success"
+            style="display: block; margin-top: 20px"
+            >Add new one</a
+          >
+          <app-course-view
+            *ngFor="let course of myOwnCourses"
+            [courseId]="course.id"
+          ></app-course-view>
+        </ng-template>
+      </mat-tab>
     </mat-tab-group>
   </mat-card>
 </ng-template>

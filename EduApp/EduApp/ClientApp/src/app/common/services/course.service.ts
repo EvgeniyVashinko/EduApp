@@ -34,4 +34,22 @@ export class CourseService {
       environment.options
     );
   }
+
+  getCoursesByOwnerId(id: string) {
+    let requestBody = { ownerId: id };
+    return this.httpClient.post<PagedListContainer<Course>>(
+      environment.apiUrl + "/api/course/list",
+      requestBody,
+      environment.options
+    );
+  }
+
+  getCoursesByParticipantId(id: string) {
+    let requestBody = { participantId: id };
+    return this.httpClient.post<PagedListContainer<Course>>(
+      environment.apiUrl + "/api/course/list",
+      requestBody,
+      environment.options
+    );
+  }
 }

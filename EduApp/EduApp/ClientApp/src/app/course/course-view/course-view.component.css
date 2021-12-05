@@ -2,6 +2,7 @@
   padding: 20px;
 }
 
-.main-button {
+.main-button,
+.btn {
   margin-right: 10px;
 }

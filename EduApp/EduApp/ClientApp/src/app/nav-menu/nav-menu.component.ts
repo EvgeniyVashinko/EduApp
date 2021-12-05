@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
 
 @Component({
@@ -6,12 +7,12 @@ import { CookieService } from "ngx-cookie-service";
   templateUrl: "./nav-menu.component.html",
   styleUrls: ["./nav-menu.component.css"],
 })
-export class NavMenuComponent {
+export class NavMenuComponent implements OnInit {
   isExpanded = false;
   isAuthorized = false;
   accountId = null;
 
-  constructor(private cookieService: CookieService) {
+  constructor(private cookieService: CookieService, private router: Router) {
     if (
       this.cookieService.get("token") != "" &&
       this.cookieService.get("accountId") != ""
@@ -21,9 +22,13 @@ export class NavMenuComponent {
     }
   }
 
+  ngOnInit() {}
+
   logOut() {
     this.cookieService.deleteAll("/");
-    window.location.reload();
+    this.router.navigate(["/"]).then(() => {
+      window.location.reload();
+    });
   }
 
   collapse() {

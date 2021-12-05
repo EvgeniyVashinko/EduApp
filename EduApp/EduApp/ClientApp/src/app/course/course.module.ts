@@ -25,5 +25,6 @@ import { CourseCreateComponent } from "./course-create/course-create.component";
     MatExpansionModule,
     MatProgressSpinnerModule,
   ],
+  exports: [CourseViewComponent],
 })
 export class CourseModule {}
