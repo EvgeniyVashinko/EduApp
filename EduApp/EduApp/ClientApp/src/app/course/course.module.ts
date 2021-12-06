@@ -16,12 +16,15 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { CourseUpdateComponent } from "./course-update/course-update.component";
 import { ReviewModule } from "../review/review.module";
+import { CourseProgressComponent } from "./course-progress/course-progress.component";
+import { LessonModule } from "../lesson/lesson.module";
 
 @NgModule({
   declarations: [
     CourseViewComponent,
     CourseCreateComponent,
     CourseUpdateComponent,
+    CourseProgressComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +32,7 @@ import { ReviewModule } from "../review/review.module";
     FormsModule,
     ReactiveFormsModule,
     ReviewModule,
+    LessonModule,
     RouterModule.forRoot([
       {
         path: "course/create",
@@ -37,6 +41,10 @@ import { ReviewModule } from "../review/review.module";
       {
         path: "course/update/:id",
         component: CourseUpdateComponent,
+      },
+      {
+        path: "course/progress/:id",
+        component: CourseProgressComponent,
       },
       {
         path: "course/:id",

@@ -50,10 +50,7 @@ export class CourseViewComponent implements OnInit {
       .getCourseParticipants(this.courseId)
       .subscribe((result) => {
         let courseParticipants = result.pagedList.items;
-        console.log(courseParticipants);
-        let a = courseParticipants.some((x) => x.accountId === this.userId);
-        console.log(a);
-        if (a) {
+        if (courseParticipants.some((x) => x.accountId === this.userId)) {
           this.isParticipant = true;
         }
       });
