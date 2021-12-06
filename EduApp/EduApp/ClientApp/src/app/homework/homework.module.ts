@@ -5,7 +5,7 @@ import { HomeworkViewComponent } from './homework-view/homework-view.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { MatButtonModule, MatTableModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatTableModule } from '@angular/material';
 
 
 
@@ -27,7 +27,8 @@ import { MatButtonModule, MatTableModule } from '@angular/material';
       },
     ]),
     MatTableModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule
   ]
 })
 export class HomeworkModule { }

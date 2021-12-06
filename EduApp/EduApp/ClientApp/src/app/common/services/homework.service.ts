@@ -42,7 +42,15 @@ export class HomeworkService {
     );
   }
 
-  removeReview(homeworkId: string) {
+  updateHomework(homework : Homework) {
+    return this.httpClient.post<Homework>(
+      environment.apiUrl + `/api/homework/update/${homework.id}`,
+      homework,
+      environment.options
+    );
+  }
+
+  removeHomework(homeworkId: string) {
     return this.httpClient.delete<Homework>(
       environment.apiUrl + `/api/homework/${homeworkId}`,
       environment.options
