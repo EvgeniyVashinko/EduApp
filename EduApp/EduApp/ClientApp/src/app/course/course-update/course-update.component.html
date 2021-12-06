@@ -60,7 +60,10 @@
         >Description: <b>{{ lesson.description }}</b></mat-card-content
       >
       <mat-card-content
-        >External link: <b>{{ lesson.externalLink }}</b></mat-card-content
+        >External link:
+        <a href="{{ lesson.externalLink }}" target="_blank"
+          >Link</a
+        ></mat-card-content
       >
       <a
         *ngIf="lesson !== null"

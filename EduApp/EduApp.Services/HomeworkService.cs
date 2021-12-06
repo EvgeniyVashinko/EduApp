@@ -42,7 +42,8 @@ namespace EduApp.Services
                 new PageInfo(request.Page, request.PageSize),
                 x => (request.AccountId == default || x.AccountId == request.AccountId) &&
                         (request.LessonId == default || x.LessonId == request.LessonId) &&
-                        (request.CourseId == default || x.Lesson.CourseId == request.CourseId)
+                        (request.CourseId == default || x.Lesson.CourseId == request.CourseId) &&
+                        (!request.IsTableRequest || (request.IsTableRequest && x.Mark == default))
             ));
 
             var response = new HomeworkListResponse(list);

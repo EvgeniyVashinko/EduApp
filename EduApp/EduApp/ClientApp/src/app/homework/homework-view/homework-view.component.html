@@ -1,41 +1,49 @@
 <mat-card class="example-card">
-    <mat-card-title>Homework</mat-card-title>
-    <mat-card-content>
-      <p>Student: {{ homework.username }}</p>
-      <p>Lesson: {{ homework.lessonName }}</p>
-      <p>Url: {{ homework.url }}</p>
-      <p>Answer: {{ homework.answer }}</p>
-    </mat-card-content>
-    <mat-card-actions>
-        <form method="post" class="example-form m-2" (ngSubmit)="setMark()" [formGroup]="setMarkForm"> 
-            <div>
-                <label>Mark: {{ setMarkForm.get("mark").value }}</label>           
-            </div>
-            <input 
-              name="mark"
-              formControlName="mark"
-              type="range"
-              list="tickmarks"
-              max="10" 
-              min="1" 
-              step="1">
-          
-            <datalist id="tickmarks">
-                <option value="1" label="1">
-                <option value="2" label="2">
-                <option value="3" label="3">
-                <option value="4" label="4">
-                <option value="5" label="5">
-                <option value="6" label="6">
-                <option value="7" label="7">
-                <option value="8" label="8">
-                <option value="9" label="9">
-                <option value="10" label="10">
-            </datalist>
-          
-            <div class="mt-15px">
-              <button mat-raised-button type="submit">Set mark</button>
-            </div>
-          </form>
-    </mat-card-actions>
+  <mat-card-title>Homework</mat-card-title>
+  <mat-card-content>
+    <p>Student: {{ homework.username }}</p>
+    <p>Lesson: {{ homework.lessonName }}</p>
+    <p *ngIf="homework.url !== '' && homework.url !== null">
+      Url: <a href="{{ homework.url }}">Link</a>
+    </p>
+    <p>Answer: {{ homework.answer }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <form
+      method="post"
+      class="example-form m-2"
+      (ngSubmit)="setMark()"
+      [formGroup]="setMarkForm"
+    >
+      <div>
+        <label>Mark: {{ setMarkForm.get("mark").value }}</label>
+      </div>
+      <input
+        name="mark"
+        formControlName="mark"
+        type="range"
+        list="tickmarks"
+        max="10"
+        min="1"
+        step="1"
+      />
+
+      <datalist id="tickmarks">
+        <option value="1" label="1"></option>
+        <option value="2" label="2"></option>
+        <option value="3" label="3"></option>
+        <option value="4" label="4"></option>
+        <option value="5" label="5"></option>
+        <option value="6" label="6"></option>
+        <option value="7" label="7"></option>
+        <option value="8" label="8"></option>
+        <option value="9" label="9"></option>
+        <option value="10" label="10"></option>
+      </datalist>
+
+      <div class="mt-15px">
+        <button mat-raised-button type="submit">Set mark</button>
+      </div>
+    </form>
+  </mat-card-actions>
 </mat-card>

@@ -39,7 +39,9 @@
       >Edit</a
     >
     <a [routerLink]="['/']" class="btn btn-danger">Delete</a>
-    <a [routerLink]="['/']" class="btn btn-info">Rewiew course hometasks</a>
+    <a [routerLink]="['/homework/list', course.id]" class="btn btn-info"
+      >Rewiew course hometasks</a
+    >
   </div>
   <ng-template #elseButtonBlock>
     <div *ngIf="isParticipant; else elseParticipantBlock">
@@ -64,19 +66,21 @@
       <a mat-stroked-button [routerLink]="['/']">Back to main</a>
     </ng-template>
   </ng-template>
-  <div *ngIf="isParticipant">
-    <app-review [courseId]="course.id"></app-review>
-  </div>
-  <div *ngIf="!isParticipant">
+  <section style="padding: 15px 0px">
     <h3>Reviews</h3>
-    <mat-spinner *ngIf="reviews === null; else rewievsNotNull"></mat-spinner>
-    <ng-template #rewievsNotNull>
-      <app-review-view
-        *ngFor="let review of reviews"
-        [review]="review"
-      ></app-review-view>
-    </ng-template>
-  </div>
+    <div *ngIf="isParticipant">
+      <app-review [courseId]="course.id"></app-review>
+    </div>
+    <div *ngIf="!isParticipant">
+      <mat-spinner *ngIf="reviews === null; else rewievsNotNull"></mat-spinner>
+      <ng-template #rewievsNotNull>
+        <app-review-view
+          *ngFor="let review of reviews"
+          [review]="review"
+        ></app-review-view>
+      </ng-template>
+    </div>
+  </section>
 </mat-card>
 <ng-template #elseBlock>
   <mat-spinner></mat-spinner>

@@ -1,16 +1,15 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { Homework } from '../models/homework';
-import { PagedListContainer } from '../models/pagedList';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { environment } from "src/environments/environment";
+import { Homework } from "../models/homework";
+import { PagedListContainer } from "../models/pagedList";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class HomeworkService {
-
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   getHomeworkById(id: string): Observable<Homework> {
     return this.httpClient.get<Homework>(
@@ -19,8 +18,8 @@ export class HomeworkService {
     );
   }
 
-  getHomeworksByCourseId(id: string) {
-    let requestBody = { courseId: id };
+  getHomeworksByLessonId(id: string) {
+    let requestBody = { lessonId: id, isTableRequest: false };
     return this.httpClient.post<PagedListContainer<Homework>>(
       environment.apiUrl + "/api/homework/list",
       requestBody,
@@ -28,21 +27,24 @@ export class HomeworkService {
     );
   }
 
-  addHomework(accountId: string, lessonId: string, url: string) {
-    let requestBody = 
-    { 
-      lessonId: lessonId,
-      accountId: accountId,
-      url: url
-    };
-    return this.httpClient.post<Homework>(
-      environment.apiUrl + "/api/homework/create",
+  getHomeworksByCourseId(id: string) {
+    let requestBody = { courseId: id, isTableRequest: true };
+    return this.httpClient.post<PagedListContainer<Homework>>(
+      environment.apiUrl + "/api/homework/list",
       requestBody,
       environment.options
     );
   }
 
-  updateHomework(homework : Homework) {
+  addHomework(homework: Partial<Homework>) {
+    return this.httpClient.post<Homework>(
+      environment.apiUrl + "/api/homework/create",
+      homework,
+      environment.options
+    );
+  }
+
+  updateHomework(homework: Homework) {
     return this.httpClient.post<Homework>(
       environment.apiUrl + `/api/homework/update/${homework.id}`,
       homework,
