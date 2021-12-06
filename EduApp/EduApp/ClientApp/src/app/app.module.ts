@@ -19,6 +19,7 @@ import { CourseModule } from "./course/course.module";
 import { UserModule } from "./user/user.module";
 import { LessonModule } from "./lesson/lesson.module";
 import { ReviewModule } from "./review/review.module";
+import { HomeworkModule } from "./homework/homework.module";
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { ReviewModule } from "./review/review.module";
     MatCardModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    ReviewModule
+    ReviewModule,
+    HomeworkModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],
