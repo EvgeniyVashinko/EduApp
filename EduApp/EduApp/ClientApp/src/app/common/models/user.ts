@@ -9,4 +9,5 @@
   sex: boolean;
   image: string;
   accountAmmount: number;
+  accountId: string;
 }

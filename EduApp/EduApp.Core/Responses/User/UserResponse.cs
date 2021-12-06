@@ -14,6 +14,7 @@ namespace EduApp.Core.Responses.User
         public bool Sex { get; set; }
         public string Image { get; set; }
         public decimal AccountAmmount { get; set; }
+        public Guid AccountId { get; set; }
         public UserResponse()
         {
         }
@@ -29,6 +30,7 @@ namespace EduApp.Core.Responses.User
             Sex = user.Sex;
             Image = user.Image;
             AccountAmmount = user.AccountAmmount;
+            AccountId = user.AccountId;
         }
     }
 }
