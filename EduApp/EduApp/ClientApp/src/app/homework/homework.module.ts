@@ -8,12 +8,18 @@ import { RouterModule } from "@angular/router";
 import {
   MatButtonModule,
   MatCardModule,
+  MatFormFieldModule,
+  MatInputModule,
   MatTableModule,
 } from "@angular/material";
-
+import { HomeworkCreateComponent } from "./homework-create/homework-create.component";
 
 @NgModule({
-  declarations: [HomeworkListComponent, HomeworkViewComponent],
+  declarations: [
+    HomeworkListComponent,
+    HomeworkViewComponent,
+    HomeworkCreateComponent,
+  ],
   imports: [
     CommonModule,
     BrowserModule,
@@ -25,6 +31,10 @@ import {
         component: HomeworkListComponent,
       },
       {
+        path: "homework/create/:lessonId",
+        component: HomeworkCreateComponent,
+      },
+      {
         path: "homework/:id",
         component: HomeworkViewComponent,
       },
@@ -32,7 +42,8 @@ import {
     MatTableModule,
     MatButtonModule,
     MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
-
 })
 export class HomeworkModule {}

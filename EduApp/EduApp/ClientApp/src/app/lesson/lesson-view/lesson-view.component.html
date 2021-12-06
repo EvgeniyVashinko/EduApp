@@ -1,7 +1,7 @@
 <mat-spinner *ngIf="lesson === null; else lessonNotNullBlock"></mat-spinner>
 <ng-template #lessonNotNullBlock>
   <mat-accordion>
-    <mat-expansion-panel>
+    <mat-expansion-panel style="margin-bottom: 10px">
       <mat-expansion-panel-header>
         <mat-panel-title> {{ lesson.title }} </mat-panel-title>
       </mat-expansion-panel-header>
@@ -15,7 +15,31 @@
         ></mat-card-content
       >
       <div *ngIf="lessonProgressView">
-        <button class="btn btn-primary">Add homework</button>
+        <a
+          *ngIf="homework === null; else homeworkNotNull"
+          [routerLink]="['/homework/create', lesson.id]"
+          class="btn btn-primary"
+          >Add homework</a
+        >
+        <ng-template #homeworkNotNull>
+          <mat-card>
+            <mat-card-title style="margin-bottom: 15px"
+              >My home task</mat-card-title
+            >
+            <mat-card-content>
+              <p>
+                Your answer: <b>{{ homework.answer }}</b>
+              </p>
+              <p *ngIf="homework.url !== '' && homework.url !== null">
+                Your external link: <a href="{{ homework.url }}">Your link</a>
+              </p>
+              <p>
+                Your mark:
+                <b>{{ homework.mark === 0 ? "No mark" : homework.mark }}</b>
+              </p>
+            </mat-card-content>
+          </mat-card>
+        </ng-template>
       </div>
     </mat-expansion-panel>
   </mat-accordion>

@@ -42,7 +42,7 @@ export class CourseProgressComponent implements OnInit {
           });
       },
       (error) => {
-        this.router.navigate(["/user/myProfile"]);
+        this.router.navigate(["/"]);
       }
     );
   }
@@ -52,11 +52,11 @@ export class CourseProgressComponent implements OnInit {
       (result) => {
         let courseParticipants = result.pagedList.items;
         if (!courseParticipants.some((x) => x.accountId === this.userId)) {
-          this.router.navigate(["/course", this.course.id]);
+          this.router.navigate(["/course", this.courseId]);
         }
       },
       (error) => {
-        this.router.navigate(["/user/myProfile"]);
+        this.router.navigate(["/"]);
       }
     );
   }
