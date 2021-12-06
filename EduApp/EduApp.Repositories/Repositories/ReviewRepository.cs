@@ -12,5 +12,10 @@ namespace EduApp.Repositories.Repositories
     internal sealed class ReviewRepository : Repository<Review, Guid>, IReviewRepository
     {
         internal ReviewRepository(DbContext dbContext) : base(dbContext) { }
+
+        protected override IQueryable<Review> MakeInclusions()
+        {
+            return DbSet.Include(x => x.Account);
+        }
     }
 }

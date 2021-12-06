@@ -1,0 +1,9 @@
+<app-review-create
+    [courseId] = "courseId"
+    (newItemEvent)="addItem($event)"
+></app-review-create>
+<app-review-view
+    *ngFor="let review of reviews"
+    [review] = "review"
+    (removeItemEvent)="removeItem($event)"
+></app-review-view>

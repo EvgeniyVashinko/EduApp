@@ -20,7 +20,7 @@ namespace EduApp.Controllers
             _reviewService = reviewService;
         }
 
-        [HttpGet("List")]
+        [HttpPost("List")]
         public async Task<IActionResult> GetReviewList([FromBody] ReviewListRequest request)
         {
             try

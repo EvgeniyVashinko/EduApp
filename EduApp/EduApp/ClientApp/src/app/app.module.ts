@@ -18,6 +18,8 @@ import {
 import { CourseModule } from "./course/course.module";
 import { UserModule } from "./user/user.module";
 import { LessonModule } from "./lesson/lesson.module";
+import { ReviewModule } from "./review/review.module";
+
 
 @NgModule({
   declarations: [AppComponent, NavMenuComponent, HomeComponent],
@@ -36,6 +38,7 @@ import { LessonModule } from "./lesson/lesson.module";
     MatCardModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    ReviewModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],
