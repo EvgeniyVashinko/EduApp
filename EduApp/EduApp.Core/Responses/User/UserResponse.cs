@@ -9,10 +9,12 @@ namespace EduApp.Core.Responses.User
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        public string UserName { get; set; }
+        public string Username { get; set; }
         public DateTime Birthday { get; set; }
         public bool Sex { get; set; }
         public string Image { get; set; }
+        public decimal AccountAmmount { get; set; }
+        public Guid AccountId { get; set; }
         public UserResponse()
         {
         }
@@ -23,10 +25,12 @@ namespace EduApp.Core.Responses.User
             FirstName = user.FirstName;
             LastName = user.LastName;
             Email = user.Email;
-            UserName = user.Account.Username;
+            Username = user.Account.Username;
             Birthday = user.Birthday;
             Sex = user.Sex;
             Image = user.Image;
+            AccountAmmount = user.AccountAmmount;
+            AccountId = user.AccountId;
         }
     }
 }

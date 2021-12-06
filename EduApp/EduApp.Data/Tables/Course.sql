@@ -8,7 +8,7 @@
     [Description] NVARCHAR(MAX) NULL, 
     [CreationDate] DATETIME2 NOT NULL, 
     [UpdatedDate] DATETIME2 NULL, 
-    [Price] DECIMAL NULL,
+    [Price] DECIMAL(10,2) NULL,
 
     CONSTRAINT [PK_Course] PRIMARY KEY([CourseId]), 
 )

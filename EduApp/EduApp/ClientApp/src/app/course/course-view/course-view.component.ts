@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { MatSnackBar } from "@angular/material";
+import { ActivatedRoute, Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
 import { Lesson } from "src/app/common/models/lesson";
 import { PagedListContainer } from "src/app/common/models/pagedList";
+import { User } from "src/app/common/models/user";
 import { LessonService } from "src/app/common/services/lesson.service";
 import { Course } from "../../common/models/course";
 import { CourseService } from "../../common/services/course.service";
@@ -17,15 +19,20 @@ export class CourseViewComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private courseService: CourseService,
     private lessonService: LessonService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private _snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   @Input("courseId") courseId: string;
 
   course: Course;
   isOwner: boolean = false;
+  isParticipant: boolean = false;
   lessonsOpenState: boolean = false;
   courseLessons: Lesson[] = null;
+
+  userId: string = this.cookieService.get("accountId");
 
   ngOnInit() {
     if (this.courseId === "" || this.courseId === undefined) {
@@ -35,8 +42,16 @@ export class CourseViewComponent implements OnInit {
       .getCourseById(this.courseId)
       .subscribe((result: Course) => {
         this.course = result;
-        if (this.course.ownerId === this.cookieService.get("accountId")) {
+        if (this.course.ownerId === this.userId) {
           this.isOwner = true;
+        }
+      });
+    this.courseService
+      .getCourseParticipants(this.courseId)
+      .subscribe((result) => {
+        let courseParticipants = result.pagedList.items;
+        if (courseParticipants.some((x) => x.accountId === this.userId)) {
+          this.isParticipant = true;
         }
       });
   }
@@ -50,5 +65,23 @@ export class CourseViewComponent implements OnInit {
           this.courseLessons = result.pagedList.items;
         });
     }
+  }
+
+  buyCourse() {
+    if (this.userId == "") {
+      this._snackBar.open("We don't know you. Are you signed in?", "Ok");
+      return;
+    }
+    this.courseService
+      .addParticipantToCourse(this.userId, this.course.id)
+      .subscribe(
+        (result) => {
+          this._snackBar.open("You've bought this course", "Ok");
+          window.location.reload();
+        },
+        (error) => {
+          this._snackBar.open("You don't have enogh money", "Ok");
+        }
+      );
   }
 }

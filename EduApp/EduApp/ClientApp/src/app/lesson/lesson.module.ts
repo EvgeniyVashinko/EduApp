@@ -7,12 +7,20 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {
   MatButtonModule,
+  MatCardModule,
+  MatExpansionModule,
   MatFormFieldModule,
   MatInputModule,
+  MatProgressSpinnerModule,
 } from "@angular/material";
+import { LessonUpdateComponent } from "./lesson-update/lesson-update.component";
 
 @NgModule({
-  declarations: [LessonViewComponent, LessonCreateComponent],
+  declarations: [
+    LessonViewComponent,
+    LessonCreateComponent,
+    LessonUpdateComponent,
+  ],
   imports: [
     CommonModule,
     BrowserModule,
@@ -20,10 +28,15 @@ import {
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: "lesson/create/:id", component: LessonCreateComponent },
+      { path: "lesson/update/:id", component: LessonUpdateComponent },
     ]),
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatCardModule,
+    MatExpansionModule,
+    MatProgressSpinnerModule,
   ],
+  exports: [LessonViewComponent],
 })
 export class LessonModule {}

@@ -10,15 +10,31 @@
         >Last name: <b>{{ user.lastName }}</b></mat-card-content
       >
       <mat-card-content
-        >Birthday: <b>{{ user.birthday }}</b></mat-card-content
+        >Username: <b>{{ user.username }}</b></mat-card-content
+      >
+      <mat-card-content
+        >Birthday: <b>{{ user.birthday | date }}</b></mat-card-content
       >
       <mat-card-content
         >Sex: <b>{{ user.sex ? "male" : "female" }}</b></mat-card-content
       >
+      <mat-card-content
+        >My wallet: <b>{{ user.accountAmmount }}$</b>
+        <button
+          type="button"
+          class="btn btn-success"
+          style="margin: 0px 15px"
+          (click)="addMoney()"
+        >
+          Add money
+        </button></mat-card-content
+      >
     </div>
 
     <div *ngIf="isMyPage">
-      <a [routerLink]="['/']" class="btn btn-warning">Edit profile</a>
+      <a [routerLink]="['/user/update', userId]" class="btn btn-warning"
+        >Edit profile</a
+      >
     </div>
 
     <mat-tab-group>
@@ -46,7 +62,11 @@
           <mat-card *ngFor="let course of myParticipatingCourses">
             <mat-card-title>{{ course.title }}</mat-card-title>
             <div *ngIf="isMyPage">
-              <a [routerLink]="['/']" class="btn btn-primary">Continue study</a>
+              <a
+                [routerLink]="['/course/progress', course.id]"
+                class="btn btn-primary"
+                >Continue study</a
+              >
               <a [routerLink]="['/']" class="btn btn-info">Add a rewiew</a>
             </div>
             <div *ngIf="!isMyPage">

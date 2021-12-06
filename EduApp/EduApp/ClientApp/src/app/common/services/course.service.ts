@@ -5,6 +5,7 @@ import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { Course } from "../models/course";
 import { PagedList, PagedListContainer } from "../models/pagedList";
+import { User } from "../models/user";
 
 @Injectable({
   providedIn: "root",
@@ -56,6 +57,24 @@ export class CourseService {
     let requestBody = { participantId: id };
     return this.httpClient.post<PagedListContainer<Course>>(
       environment.apiUrl + "/api/course/list",
+      requestBody,
+      environment.options
+    );
+  }
+
+  getCourseParticipants(courseId: string) {
+    let requestBody = { courseId: courseId };
+    return this.httpClient.post<PagedListContainer<User>>(
+      environment.apiUrl + "/api/course/ParticipantList/",
+      requestBody,
+      environment.options
+    );
+  }
+
+  addParticipantToCourse(accountId: string, courseId: string) {
+    let requestBody = { accountId: accountId, courseId: courseId };
+    return this.httpClient.post<Course>(
+      environment.apiUrl + "/api/course/AddParticipant",
       requestBody,
       environment.options
     );

@@ -16,4 +16,12 @@ export class UserService {
       environment.options
     );
   }
+
+  updateUser(user: Partial<User>) {
+    return this.httpClient.post<User>(
+      environment.apiUrl + "/api/user/update/" + user.id,
+      user,
+      environment.options
+    );
+  }
 }

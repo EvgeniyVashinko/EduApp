@@ -31,5 +31,21 @@ namespace EduApp.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost("Update/{id}")]
+        public async Task<IActionResult> UpdateUser([FromBody] UpdateUserRequest userRequest)
+        {
+            try
+            {
+                var user = await _userService.UpdateUser(userRequest);
+
+                return Ok(user);
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }

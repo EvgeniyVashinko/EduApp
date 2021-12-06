@@ -38,14 +38,31 @@
     <a [routerLink]="['/']" class="btn btn-info">Rewiew course hometasks</a>
   </div>
   <ng-template #elseButtonBlock>
-    <button mat-raised-button class="main-button" color="primary">
-      Got it
-    </button>
-    <a mat-stroked-button [routerLink]="['/']">Back to main</a>
+    <div *ngIf="isParticipant; else elseParticipantBlock">
+      <a
+        [routerLink]="['/course/progress', course.id]"
+        mat-raised-button
+        class="main-button"
+        color="primary"
+      >
+        Continue study
+      </a>
+    </div>
+    <ng-template #elseParticipantBlock>
+      <button
+        mat-raised-button
+        class="main-button"
+        color="primary"
+        (click)="buyCourse()"
+      >
+        Got it
+      </button>
+      <a mat-stroked-button [routerLink]="['/']">Back to main</a>
+    </ng-template>
   </ng-template>
-  <app-review
-    [courseId]="course.id"
-  ></app-review>
+  <div *ngIf="isParticipan">
+    <app-review [courseId]="course.id"></app-review>
+  </div>
 </mat-card>
 <ng-template #elseBlock>
   <mat-spinner></mat-spinner>

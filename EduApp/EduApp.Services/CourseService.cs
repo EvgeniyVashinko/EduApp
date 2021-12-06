@@ -153,6 +153,8 @@ namespace EduApp.Services
         public async Task<CourseResponse> AddParticipant(ParticipantRequest request)
         {
             var course = await Task.Run(() => _uow.CourseRepository.Find(request.CourseId));
+            var courseOwnerUserInfo = await Task.Run(() => _uow.UserInfoRepository.Find(x => x.AccountId == course.OwnerId));
+
             if (course is null)
             {
                 throw new AppException("Course with such id not found", nameof(course));
@@ -164,9 +166,17 @@ namespace EduApp.Services
                 throw new AppException("Account with such id not found", nameof(account));
             }
 
+            var userInfo = await Task.Run(() => _uow.UserInfoRepository.Find(x => x.AccountId == request.AccountId));
+            if(userInfo.AccountAmmount < course.Price)
+            {
+                throw new AppException("You don't have enough money", nameof(account));
+            }
+
             if (!course.Participants.Contains(account))
             {
                 course.Participants.Add(account);
+                userInfo.AccountAmmount -= course.Price;
+                courseOwnerUserInfo.AccountAmmount += course.Price * 0.9M;
 
                 _uow.Commit();
             }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { MatSnackBar } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
 import { Course } from "src/app/common/models/course";
@@ -26,7 +27,8 @@ export class UserViewComponent implements OnInit {
     private cookieService: CookieService,
     private userService: UserService,
     private courseService: CourseService,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -64,5 +66,23 @@ export class UserViewComponent implements OnInit {
       .subscribe((result: PagedListContainer<Course>) => {
         this.myParticipatingCourses = result.pagedList.items;
       });
+  }
+
+  addMoney() {
+    let reqObj: Partial<User> = {
+      id: this.user.id,
+      firstName: this.user.firstName,
+      lastName: this.user.lastName,
+      username: this.user.username,
+      birthday: this.user.birthday,
+      email: this.user.email,
+      sex: this.user.sex,
+      accountAmmount: this.user.accountAmmount + 10,
+      image: this.user.image,
+    };
+    this.userService.updateUser(reqObj).subscribe((result) => {
+      this._snackBar.open("You got 10$", "Thanks");
+      this.user = result;
+    });
   }
 }

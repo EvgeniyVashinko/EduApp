@@ -127,7 +127,7 @@ namespace EduApp.Controllers
             }
         }
 
-        [HttpGet("ParticipantList")]
+        [HttpPost("ParticipantList")]
         public async Task<IActionResult> GetCourseParticipantList([FromBody] ParticipantListRequest request)
         {
             try

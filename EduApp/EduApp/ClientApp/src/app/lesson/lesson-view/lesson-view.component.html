@@ -1,1 +1,22 @@
-<p>lesson-view works!</p>
+<mat-spinner *ngIf="lesson === null; else lessonNotNullBlock"></mat-spinner>
+<ng-template #lessonNotNullBlock>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> {{ lesson.title }} </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-card-content
+        >Description: <b>{{ lesson.description }}</b></mat-card-content
+      >
+      <mat-card-content
+        >External link:
+        <a href="{{ lesson.externalLink }}" target="_blank"
+          >Link with materials</a
+        ></mat-card-content
+      >
+      <div *ngIf="lessonProgressView">
+        <button class="btn btn-primary">Add homework</button>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</ng-template>

@@ -27,4 +27,27 @@ export class LessonService {
       environment.options
     );
   }
+
+  deleteLesson(id: string) {
+    return this.httpClient.delete<Lesson>(
+      environment.apiUrl + "/api/lesson/" + id,
+      environment.options
+    );
+  }
+
+  updateLesson(lesson: Lesson) {
+    return this.httpClient.post<Lesson>(
+      environment.apiUrl + "/api/lesson/update/" + lesson.id,
+      lesson,
+      environment.options
+    );
+  }
+
+  getLessonById(id: string) {
+    return this.httpClient.post<Lesson>(
+      environment.apiUrl + "/api/lesson/" + id,
+      {},
+      environment.options
+    );
+  }
 }

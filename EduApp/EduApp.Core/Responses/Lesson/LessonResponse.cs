@@ -22,6 +22,7 @@ namespace EduApp.Core.Responses.Lesson
             CourseId = lesson.CourseId;
             Title = lesson.Title;
             Description = lesson.Description;
+            ExternalLink = lesson.ExternalLink;
             CreationDate = lesson.CreationDate;
             UpdatedDate = lesson.UpdatedDate;
         }

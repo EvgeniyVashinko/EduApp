@@ -17,6 +17,8 @@ namespace EduApp.Core.Entities
 
         public string Image { get; set; }
 
+        public decimal AccountAmmount { get; set; }
+
         public Guid AccountId { get; set; }
 
         public Account Account { get; set; }
