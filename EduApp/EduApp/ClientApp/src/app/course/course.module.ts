@@ -15,6 +15,7 @@ import { CourseCreateComponent } from "./course-create/course-create.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { CourseUpdateComponent } from "./course-update/course-update.component";
+import { ReviewModule } from "../review/review.module";
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { CourseUpdateComponent } from "./course-update/course-update.component";
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    ReviewModule,
     RouterModule.forRoot([
       {
         path: "course/create",

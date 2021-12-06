@@ -11,6 +11,7 @@ namespace EduApp.Core.Responses.Review
         public string Description { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime UpdatedDate { get; set; }
+        public string Username { get; set; }
 
         public ReviewResponse()
         {
@@ -25,6 +26,7 @@ namespace EduApp.Core.Responses.Review
             Description = review.Description;
             CreationDate = review.CreationDate;
             UpdatedDate = review.UpdatedDate;
+            Username = review.Account.Username;
         }
     }
 }

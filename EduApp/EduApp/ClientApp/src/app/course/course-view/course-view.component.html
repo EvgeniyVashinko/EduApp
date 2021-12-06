@@ -43,6 +43,9 @@
     </button>
     <a mat-stroked-button [routerLink]="['/']">Back to main</a>
   </ng-template>
+  <app-review
+    [courseId]="course.id"
+  ></app-review>
 </mat-card>
 <ng-template #elseBlock>
   <mat-spinner></mat-spinner>

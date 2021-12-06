@@ -1,0 +1,11 @@
+<mat-card class="example-card mt-15px">
+    <mat-card-title>{{ review.username }}</mat-card-title>
+    <mat-card-subtitle>Value: {{ review.value }}</mat-card-subtitle>
+    <mat-card-content>
+      <p>{{ review.description }}</p>
+      <small>{{ review.creationDate | date:'dd.MM.yyyy HH:mm' }}</small>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="warn" *ngIf="isOwner" (click)="removeReview(review.id)">Remove</button>
+    </mat-card-actions>
+</mat-card>
