@@ -1,4 +1,5 @@
 ﻿export interface User {
+  id: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -7,4 +8,5 @@
   birthday: Date;
   sex: boolean;
   image: string;
+  accountAmmount: number;
 }

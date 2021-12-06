@@ -49,7 +49,7 @@ export class AccountRegistrationComponent implements OnInit {
   }
 
   registration() {
-    let user: User = {
+    let user: Partial<User> = {
       firstName: this.registerForm.get("firstName").value,
       lastName: this.registerForm.get("lastName").value,
       email: this.registerForm.get("email").value,

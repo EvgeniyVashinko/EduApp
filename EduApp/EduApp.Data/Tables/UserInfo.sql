@@ -7,6 +7,7 @@
     [Sex] BIT NOT NULL,
     [Email] NVARCHAR(256) NOT NULL, 
     [Image] NVARCHAR(MAX) NULL,
+    [AccountAmmount] DECIMAL(10,2) NULL DEFAULT 0,
     [AccountId] UNIQUEIDENTIFIER NOT NULL
         CONSTRAINT [FK_UserInfo_Account] FOREIGN KEY
         REFERENCES [dbo].[Account]([AccountId]),

@@ -39,7 +39,7 @@ namespace EduApp.Services
                 x => x.FirstName.StartsWith(request.FirstName) &&
                     x.LastName.StartsWith(request.LastName) &&
                     x.Email.StartsWith(request.Email) &&
-                    x.Account.Username.StartsWith(request.UserName)
+                    x.Account.Username.StartsWith(request.Username)
             ));
 
             var response = new UserListResponse(list);
@@ -129,6 +129,7 @@ namespace EduApp.Services
             userInfo.Birthday = request.Birthday;
             userInfo.Sex = request.Sex;
             userInfo.Image = request.Image ?? userInfo.Image;
+            userInfo.AccountAmmount = request.AccountAmmount == 0 ? userInfo.AccountAmmount : request.AccountAmmount;
 
             if (!string.IsNullOrEmpty(request.Password))
             {
