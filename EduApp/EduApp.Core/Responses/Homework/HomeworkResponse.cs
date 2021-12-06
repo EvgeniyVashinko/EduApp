@@ -10,6 +10,8 @@ namespace EduApp.Core.Responses.Homework
         public string Answer { get; set; }
         public string Url { get; set; }
         public int Mark { get; set; }
+        public string LessonName { get; set; }
+        public string Username { get; set; }
 
         public HomeworkResponse()
         {
@@ -23,6 +25,8 @@ namespace EduApp.Core.Responses.Homework
             Answer = homework.Answer;
             Url = homework.Url;
             Mark = homework.Mark;
+            LessonName = homework.Lesson.Title;
+            Username = homework.Account.Username;
         }
     }
 }

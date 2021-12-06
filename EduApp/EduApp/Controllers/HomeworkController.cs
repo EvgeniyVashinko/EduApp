@@ -20,7 +20,7 @@ namespace EduApp.Controllers
             _homeworkService = homeworkService;
         }
 
-        [HttpGet("List")]
+        [HttpPost("List")]
         public async Task<IActionResult> GetHomeworkList([FromBody] HomeworkListRequest request)
         {
             try
