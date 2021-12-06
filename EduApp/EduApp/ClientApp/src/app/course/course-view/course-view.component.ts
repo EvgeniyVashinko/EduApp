@@ -4,8 +4,10 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
 import { Lesson } from "src/app/common/models/lesson";
 import { PagedListContainer } from "src/app/common/models/pagedList";
+import { Review } from "src/app/common/models/review";
 import { User } from "src/app/common/models/user";
 import { LessonService } from "src/app/common/services/lesson.service";
+import { ReviewService } from "src/app/common/services/review.service";
 import { Course } from "../../common/models/course";
 import { CourseService } from "../../common/services/course.service";
 
@@ -21,7 +23,8 @@ export class CourseViewComponent implements OnInit {
     private lessonService: LessonService,
     private cookieService: CookieService,
     private _snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private rewievService: ReviewService
   ) {}
 
   @Input("courseId") courseId: string;
@@ -32,6 +35,7 @@ export class CourseViewComponent implements OnInit {
   lessonsOpenState: boolean = false;
   courseLessons: Lesson[] = null;
 
+  reviews: Review[] = null;
   userId: string = this.cookieService.get("accountId");
 
   ngOnInit() {
@@ -45,6 +49,7 @@ export class CourseViewComponent implements OnInit {
         if (this.course.ownerId === this.userId) {
           this.isOwner = true;
         }
+        this.getReviews();
       });
     this.courseService
       .getCourseParticipants(this.courseId)
@@ -65,6 +70,14 @@ export class CourseViewComponent implements OnInit {
           this.courseLessons = result.pagedList.items;
         });
     }
+  }
+
+  getReviews() {
+    this.rewievService
+      .getReviewsByCourseId(this.courseId)
+      .subscribe((result) => {
+        this.reviews = result.pagedList.items;
+      });
   }
 
   buyCourse() {

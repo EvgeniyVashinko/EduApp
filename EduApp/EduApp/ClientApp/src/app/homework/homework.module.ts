@@ -1,12 +1,15 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HomeworkListComponent } from './homework-list/homework-list.component';
-import { HomeworkViewComponent } from './homework-view/homework-view.component';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { MatButtonModule, MatCardModule, MatTableModule } from '@angular/material';
-
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { HomeworkListComponent } from "./homework-list/homework-list.component";
+import { HomeworkViewComponent } from "./homework-view/homework-view.component";
+import { BrowserModule } from "@angular/platform-browser";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { RouterModule } from "@angular/router";
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatTableModule,
+} from "@angular/material";
 
 
 @NgModule({
@@ -28,7 +31,8 @@ import { MatButtonModule, MatCardModule, MatTableModule } from '@angular/materia
     ]),
     MatTableModule,
     MatButtonModule,
-    MatCardModule
-  ]
+    MatCardModule,
+  ],
+
 })
-export class HomeworkModule { }
+export class HomeworkModule {}

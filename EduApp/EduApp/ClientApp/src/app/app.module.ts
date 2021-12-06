@@ -14,13 +14,13 @@ import {
   MatButtonModule,
   MatCardModule,
   MatProgressSpinnerModule,
+  MatTabsModule,
 } from "@angular/material";
 import { CourseModule } from "./course/course.module";
 import { UserModule } from "./user/user.module";
 import { LessonModule } from "./lesson/lesson.module";
 import { ReviewModule } from "./review/review.module";
 import { HomeworkModule } from "./homework/homework.module";
-
 
 @NgModule({
   declarations: [AppComponent, NavMenuComponent, HomeComponent],
@@ -40,7 +40,8 @@ import { HomeworkModule } from "./homework/homework.module";
     MatButtonModule,
     MatProgressSpinnerModule,
     ReviewModule,
-    HomeworkModule
+    MatTabsModule,
+    HomeworkModule,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],
