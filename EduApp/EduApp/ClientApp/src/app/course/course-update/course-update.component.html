@@ -51,13 +51,16 @@
   >
   <mat-spinner *ngIf="lessons === null; else lessonElseBlock"></mat-spinner>
   <ng-template #lessonElseBlock>
-    <mat-card *ngFor="let lesson of lessons">
+    <mat-card *ngFor="let lesson of lessons" style="margin-top: 15px">
       <mat-card-title
         >Lesson #{{ lessons.indexOf(lesson) + 1 }}
         <b>{{ lesson.title }}</b></mat-card-title
       >
       <mat-card-content
         >Description: <b>{{ lesson.description }}</b></mat-card-content
+      >
+      <mat-card-content
+        >External link: <b>{{ lesson.externalLink }}</b></mat-card-content
       >
       <a
         *ngIf="lesson !== null"
@@ -68,8 +71,9 @@
       >
       <a
         *ngIf="lesson !== null"
-        [routerLink]="['/lesson/update', lesson.id]"
+        [routerLink]=""
         class="btn btn-danger"
+        (click)="deleteLesson(lesson.id)"
         >Delete</a
       >
     </mat-card>

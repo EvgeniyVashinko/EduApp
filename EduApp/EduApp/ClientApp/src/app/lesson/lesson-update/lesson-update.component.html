@@ -1,5 +1,5 @@
-<form method="post" (ngSubmit)="createLesson()" [formGroup]="createLessonForm">
-  <h1>Creating new lesson</h1>
+<form method="post" (ngSubmit)="updateLesson()" [formGroup]="updateLessonForm">
+  <h1>Updating lesson</h1>
   <div class="errors-block">
     <p *ngIf="error != ''" class="error__item">{{ error }}</p>
   </div>
@@ -38,5 +38,5 @@
     />
   </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit">Create lesson</button>
+  <button mat-raised-button color="primary" type="submit">Update lesson</button>
 </form>

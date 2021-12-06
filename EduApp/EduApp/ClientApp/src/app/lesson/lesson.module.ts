@@ -10,9 +10,14 @@ import {
   MatFormFieldModule,
   MatInputModule,
 } from "@angular/material";
+import { LessonUpdateComponent } from "./lesson-update/lesson-update.component";
 
 @NgModule({
-  declarations: [LessonViewComponent, LessonCreateComponent],
+  declarations: [
+    LessonViewComponent,
+    LessonCreateComponent,
+    LessonUpdateComponent,
+  ],
   imports: [
     CommonModule,
     BrowserModule,
@@ -20,6 +25,7 @@ import {
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: "lesson/create/:id", component: LessonCreateComponent },
+      { path: "lesson/update/:id", component: LessonUpdateComponent },
     ]),
     MatFormFieldModule,
     MatInputModule,
