@@ -62,7 +62,11 @@
           <mat-card *ngFor="let course of myParticipatingCourses">
             <mat-card-title>{{ course.title }}</mat-card-title>
             <div *ngIf="isMyPage">
-              <a [routerLink]="['/']" class="btn btn-primary">Continue study</a>
+              <a
+                [routerLink]="['/course/progress', course.id]"
+                class="btn btn-primary"
+                >Continue study</a
+              >
               <a [routerLink]="['/']" class="btn btn-info">Add a rewiew</a>
             </div>
             <div *ngIf="!isMyPage">

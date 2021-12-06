@@ -39,9 +39,14 @@
   </div>
   <ng-template #elseButtonBlock>
     <div *ngIf="isParticipant; else elseParticipantBlock">
-      <button mat-raised-button class="main-button" color="primary">
+      <a
+        [routerLink]="['/course/progress', course.id]"
+        mat-raised-button
+        class="main-button"
+        color="primary"
+      >
         Continue study
-      </button>
+      </a>
     </div>
     <ng-template #elseParticipantBlock>
       <button
@@ -55,9 +60,9 @@
       <a mat-stroked-button [routerLink]="['/']">Back to main</a>
     </ng-template>
   </ng-template>
-  <app-review
-    [courseId]="course.id"
-  ></app-review>
+  <div *ngIf="isParticipan">
+    <app-review [courseId]="course.id"></app-review>
+  </div>
 </mat-card>
 <ng-template #elseBlock>
   <mat-spinner></mat-spinner>

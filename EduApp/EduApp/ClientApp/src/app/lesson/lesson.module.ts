@@ -7,8 +7,11 @@ import { BrowserModule } from "@angular/platform-browser";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {
   MatButtonModule,
+  MatCardModule,
+  MatExpansionModule,
   MatFormFieldModule,
   MatInputModule,
+  MatProgressSpinnerModule,
 } from "@angular/material";
 import { LessonUpdateComponent } from "./lesson-update/lesson-update.component";
 
@@ -30,6 +33,10 @@ import { LessonUpdateComponent } from "./lesson-update/lesson-update.component";
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatCardModule,
+    MatExpansionModule,
+    MatProgressSpinnerModule,
   ],
+  exports: [LessonViewComponent],
 })
 export class LessonModule {}

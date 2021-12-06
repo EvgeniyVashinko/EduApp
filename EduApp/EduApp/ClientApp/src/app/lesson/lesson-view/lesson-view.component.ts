@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { Lesson } from "src/app/common/models/lesson";
+import { LessonService } from "src/app/common/services/lesson.service";
 
 @Component({
   selector: "app-lesson-view",
@@ -7,8 +10,21 @@ import { Component, Input, OnInit } from "@angular/core";
 })
 export class LessonViewComponent implements OnInit {
   @Input() lessonId: string;
+  @Input() lessonProgressView: boolean = false;
 
-  constructor() {}
+  lesson: Lesson = null;
 
-  ngOnInit() {}
+  constructor(private lessonService: LessonService, private router: Router) {}
+
+  ngOnInit() {
+    this.lessonService.getLessonById(this.lessonId).subscribe(
+      (result) => {
+        this.lesson = result;
+      },
+      (error) => {
+        this.router.navigate(["/"]);
+        console.log(error);
+      }
+    );
+  }
 }
