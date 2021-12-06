@@ -11,6 +11,7 @@ import {
   MatTableModule,
 } from "@angular/material";
 
+
 @NgModule({
   declarations: [HomeworkListComponent, HomeworkViewComponent],
   imports: [
@@ -32,5 +33,6 @@ import {
     MatButtonModule,
     MatCardModule,
   ],
+
 })
 export class HomeworkModule {}
