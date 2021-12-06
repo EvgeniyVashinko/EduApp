@@ -164,9 +164,16 @@ namespace EduApp.Services
                 throw new AppException("Account with such id not found", nameof(account));
             }
 
+            var userInfo = await Task.Run(() => _uow.UserInfoRepository.Find(x => x.AccountId == request.AccountId));
+            if(userInfo.AccountAmmount < course.Price)
+            {
+                throw new AppException("You don't have enough money", nameof(account));
+            }
+
             if (!course.Participants.Contains(account))
             {
                 course.Participants.Add(account);
+                userInfo.AccountAmmount -= course.Price;
 
                 _uow.Commit();
             }
