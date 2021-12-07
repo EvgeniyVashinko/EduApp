@@ -38,7 +38,9 @@
     <a [routerLink]="['/course/update', course.id]" class="btn btn-warning"
       >Edit</a
     >
-    <a [routerLink]="['/']" class="btn btn-danger">Delete</a>
+    <button class="btn btn-danger" (click)="deleteCourse(course.id)">
+      Delete
+    </button>
     <a [routerLink]="['/homework/list', course.id]" class="btn btn-info"
       >Rewiew course hometasks</a
     >

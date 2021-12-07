@@ -1,4 +1,6 @@
-﻿export class Course {
+﻿import { Category } from "./category";
+
+export class Course {
   id: string;
   title: string;
   description: string;
@@ -6,4 +8,5 @@
   ownerId: string;
   categories: string[];
   isActive: boolean;
+  categoriesObj: Category[];
 }

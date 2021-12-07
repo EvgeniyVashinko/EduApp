@@ -1,4 +1,8 @@
-﻿using System;
+﻿using EduApp.Core.Entities;
+using EduApp.Core.Responses.Categories;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace EduApp.Core.Responses.Course
 {
@@ -13,6 +17,7 @@ namespace EduApp.Core.Responses.Course
         public DateTime CreationDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public bool IsActive { get; set; }
+        public IEnumerable<CategoryResponse> CategoriesObj { get; set; }
 
         public CourseResponse()
         {
@@ -29,6 +34,7 @@ namespace EduApp.Core.Responses.Course
             CreationDate = course.CreationDate;
             UpdatedDate = course.UpdatedDate;
             IsActive = course.IsActive;
+            CategoriesObj = course.Categories.Select(x => new CategoryResponse(x)).ToList();
         }
     }
 }

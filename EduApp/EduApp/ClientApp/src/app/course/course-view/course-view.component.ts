@@ -97,4 +97,10 @@ export class CourseViewComponent implements OnInit {
         }
       );
   }
+
+  deleteCourse(id: string) {
+    this.courseService.deleteCourse(id).subscribe((result) => {
+      this.router.navigate(["/"]);
+    });
+  }
 }

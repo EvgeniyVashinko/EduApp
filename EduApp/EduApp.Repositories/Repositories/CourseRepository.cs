@@ -17,7 +17,8 @@ namespace EduApp.Repositories.Repositories
         {
             return DbSet.Include(x => x.Participants)
                         .ThenInclude(x => x.UserInfo)
-                        .ThenInclude(x => x.Account);
+                        .ThenInclude(x => x.Account)
+                        .Include(x => x.Categories);
         }
     }
 }
