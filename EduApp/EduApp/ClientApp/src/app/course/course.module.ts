@@ -9,6 +9,7 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatProgressSpinnerModule,
+  MatSelectModule,
   MatSnackBarModule,
 } from "@angular/material";
 import { CourseCreateComponent } from "./course-create/course-create.component";
@@ -58,6 +59,7 @@ import { LessonModule } from "../lesson/lesson.module";
     MatFormFieldModule,
     MatInputModule,
     MatSnackBarModule,
+    MatSelectModule,
   ],
   exports: [CourseViewComponent],
 })
