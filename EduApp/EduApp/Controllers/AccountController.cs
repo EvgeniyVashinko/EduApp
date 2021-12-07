@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace EduApp.Controllers
@@ -42,7 +43,8 @@ namespace EduApp.Controllers
                     var response = new AuthenticationResponse()
                     {
                         Token = jwt,
-                        AccountId = account.AccountId
+                        AccountId = account.AccountId,
+                        IsAdmin = account.Claims.Any(x => x.Type == ClaimTypes.Role && x.Value == "Admin")
                     };
 
                     return Ok(response);

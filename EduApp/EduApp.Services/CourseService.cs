@@ -44,7 +44,8 @@ namespace EduApp.Services
                 new PageInfo(request.Page, request.PageSize),
                 x => x.Title.StartsWith(request.Title) && 
                     (request.OwnerId == default || x.OwnerId == request.OwnerId) &&
-                    (request.ParticipantId == default || x.Participants.Any(x => x.Id == request.ParticipantId))
+                    (request.ParticipantId == default || x.Participants.Any(x => x.Id == request.ParticipantId)) &&
+                    (request.IsActive == null || x.IsActive == request.IsActive)
             ));
 
             var response = new CourseListResponse(list);
@@ -228,6 +229,44 @@ namespace EduApp.Services
             var pl = new PagedList<UserInfo>(pageItems, query.Count(), pageInfo);
 
             return new UserListResponse(pl);
+        }
+
+        public async Task<CourseResponse> ApproveCourse(GetCourseRequest request)
+        {
+            var course = await Task.Run(() => _uow.CourseRepository.Find(request.Id));
+            if (course is null)
+            {
+                throw new AppException("Course with such id not found", nameof(course));
+            }
+
+            course.IsActive = true;
+
+            _uow.CourseRepository.Update(course);
+
+            _uow.Commit();
+
+            var response = new CourseResponse(course);
+
+            return response;
+        }
+
+        public async Task<CourseResponse> DeclineCourse(GetCourseRequest request)
+        {
+            var course = await Task.Run(() => _uow.CourseRepository.Find(request.Id));
+            if (course is null)
+            {
+                throw new AppException("Course with such id not found", nameof(course));
+            }
+
+            course.IsActive = false;
+
+            _uow.CourseRepository.Update(course);
+
+            _uow.Commit();
+
+            var response = new CourseResponse(course);
+
+            return response;
         }
     }
 }

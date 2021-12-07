@@ -6,5 +6,6 @@ namespace EduApp.Core.Responses
     {
         public string Token { get; set; }
         public Guid AccountId { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

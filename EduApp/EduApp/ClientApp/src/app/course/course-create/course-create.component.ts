@@ -33,6 +33,7 @@ export class CourseCreateComponent implements OnInit {
       price: this.createCourseForm.get("price").value,
       ownerId: this.cookieService.get("accountId"),
       id: undefined,
+      isActive: false
     };
 
     if (course.price < 0) {

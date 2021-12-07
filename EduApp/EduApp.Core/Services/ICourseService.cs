@@ -15,5 +15,7 @@ namespace EduApp.Core.Services
         public Task<CourseResponse> AddParticipant(ParticipantRequest request);
         public Task<CourseResponse> RemoveParticipant(ParticipantRequest request);
         public Task<UserListResponse> GetCourseParticipantList(ParticipantListRequest request);
+        public Task<CourseResponse> ApproveCourse(GetCourseRequest request);
+        public Task<CourseResponse> DeclineCourse(GetCourseRequest request);
     }
 }
