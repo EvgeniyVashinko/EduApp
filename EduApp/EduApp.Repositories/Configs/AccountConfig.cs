@@ -17,6 +17,20 @@ namespace EduApp.Repositories.Configs
                     right => right.HasOne<Role>().WithMany().HasForeignKey(x => x.RoleId),
                     left => left.HasOne<Account>().WithMany().HasForeignKey(x => x.AccountId),
                     join => join.ToTable("AccountRole"));
+
+            builder.HasMany(x => x.MyOwnCourses).WithOne(x => x.Owner);
+
+            builder.HasMany(x => x.MyStartedCourses).WithMany(x => x.Participants)
+                .UsingEntity<CourseParticipants>(
+                    right => right.HasOne<Course>().WithMany().HasForeignKey(x => x.CourseId),
+                    left => left.HasOne<Account>().WithMany().HasForeignKey(x => x.AccountId),
+                    join => join.ToTable("CourseParticipants"));
+
+            //builder.HasMany(x => x.Courses).WithMany(x => x.Participants)
+            //    .UsingEntity<CourseParticipants>(
+            //        right => right.HasOne<Course>().WithMany().HasForeignKey(x => x.CourseId),
+            //        left => left.HasOne<Account>().WithMany().HasForeignKey(x => x.AccountId),
+            //        join => join.ToTable("CourseParticipants"));
         }
     }
 }

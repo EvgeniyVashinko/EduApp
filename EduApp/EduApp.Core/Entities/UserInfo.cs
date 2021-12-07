@@ -11,11 +11,13 @@ namespace EduApp.Core.Entities
 
         public DateTime Birthday { get; set; }
 
-        public byte Sex { get; set; }
+        public bool Sex { get; set; }
 
         public string Email { get; set; }
 
-        public byte[] Image { get; set; }
+        public string Image { get; set; }
+
+        public decimal AccountAmmount { get; set; }
 
         public Guid AccountId { get; set; }
 

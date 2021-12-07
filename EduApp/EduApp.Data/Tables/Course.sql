@@ -8,8 +8,9 @@
     [Description] NVARCHAR(MAX) NULL, 
     [CreationDate] DATETIME2 NOT NULL, 
     [UpdatedDate] DATETIME2 NULL, 
-    [Price] DECIMAL NULL,
+    [Price] DECIMAL(10,2) NULL,
 
+    [IsActive] BIT NOT NULL DEFAULT 0, 
     CONSTRAINT [PK_Course] PRIMARY KEY([CourseId]), 
 )
 GO

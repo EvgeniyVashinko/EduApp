@@ -7,7 +7,7 @@ namespace EduApp.Core.Entities
     {
         public decimal Sum { get; set; }
 
-        public DateTime CreationalDate { get; set; }
+        public DateTime CreationDate { get; set; }
 
         public Guid AccountId { get; set; }
         

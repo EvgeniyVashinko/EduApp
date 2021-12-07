@@ -15,12 +15,14 @@ namespace EduApp.Core.Entities
         
         public DateTime CreationDate { get; set; }
         
-        public DateTime UpdateDate { get; set; }
+        public DateTime UpdatedDate { get; set; }
 
         [Column("AccountId")]
         public Guid OwnerId { get; set; }
 
         public Account Owner { get; set; }
+
+        public bool IsActive { get; set; }
 
         public ICollection<Account> Participants { get; set; }
 

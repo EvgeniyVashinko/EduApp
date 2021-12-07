@@ -10,16 +10,18 @@ namespace EduApp.Core.Entities
         
         public string Description { get; set; }
 
+        public string ExternalLink { get; set; }
+
         public DateTime CreationDate { get; set; }
 
         public DateTime UpdatedDate { get; set; }
-
-        public DateTime RecommendedTime { get; set; }
 
         public Guid CourseId { get; set; }
 
         public Course Course { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
+
+        public ICollection<Homework> Homeworks { get; set; }
     }
 }

@@ -1,0 +1,42 @@
+<form method="post" (ngSubmit)="createLesson()" [formGroup]="createLessonForm">
+  <h1>Creating new lesson</h1>
+  <div class="errors-block">
+    <p *ngIf="error != ''" class="error__item">{{ error }}</p>
+  </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Title</mat-label>
+    <input
+      name="title"
+      formControlName="title"
+      matInput
+      placeholder="Lesson title"
+      required
+    />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea
+      name="description"
+      formControlName="description"
+      matInput
+      placeholder="Lesson description"
+      required
+    >
+    </textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>External link</mat-label>
+    <input
+      type="url"
+      name="externalLink"
+      formControlName="externalLink"
+      matInput
+      placeholder="External link"
+      pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?"
+      required
+    />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Create lesson</button>
+</form>

@@ -1,0 +1,11 @@
+mat-form-field {
+  display: block;
+}
+
+button {
+  width: 100%;
+}
+
+.error__item {
+  color: red;
+}

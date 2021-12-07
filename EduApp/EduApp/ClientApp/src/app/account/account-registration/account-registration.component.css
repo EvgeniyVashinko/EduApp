@@ -1,0 +1,15 @@
+mat-form-field {
+  display: block;
+}
+
+button {
+  width: 100%;
+}
+
+.sign_up_btn {
+  margin: 20px 0px;
+}
+
+.error__item {
+  color: red;
+}

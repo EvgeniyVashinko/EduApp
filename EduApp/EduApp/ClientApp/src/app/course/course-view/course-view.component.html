@@ -1,0 +1,89 @@
+<mat-card class="course__item" *ngIf="course != null; else elseBlock">
+  <mat-card-title>{{ course.title }}</mat-card-title>
+  <mat-card-subtitle>Category: </mat-card-subtitle>
+  <mat-card-content>
+    <b>Description: </b>{{ course.description }}</mat-card-content
+  >
+
+  <mat-card-content>
+    <mat-accordion>
+      <mat-expansion-panel
+        (opened)="getLessons()"
+        (closed)="lessonsOpenState = false"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title> List of the lessons </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-spinner
+          *ngIf="courseLessons === null; else lessonsNullBlock"
+        ></mat-spinner>
+        <ng-template #lessonsNullBlock>
+          <p *ngFor="let lesson of courseLessons">
+            #{{ courseLessons.indexOf(lesson) + 1 }}
+            <b>{{ lesson.title }}</b>
+          </p>
+        </ng-template>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-card-content>
+
+  <mat-card-subtitle
+    >Price: <b>{{ course.price }}$</b></mat-card-subtitle
+  >
+  <mat-card-subtitle
+    >Course owner:
+    <b><a href="/user/{{ course.ownerId }}">Profile</a></b></mat-card-subtitle
+  >
+  <div *ngIf="isOwner; else elseButtonBlock">
+    <a [routerLink]="['/course/update', course.id]" class="btn btn-warning"
+      >Edit</a
+    >
+    <button class="btn btn-danger" (click)="deleteCourse(course.id)">
+      Delete
+    </button>
+    <a [routerLink]="['/homework/list', course.id]" class="btn btn-info"
+      >Rewiew course hometasks</a
+    >
+  </div>
+  <ng-template #elseButtonBlock>
+    <div *ngIf="isParticipant; else elseParticipantBlock">
+      <a
+        [routerLink]="['/course/progress', course.id]"
+        mat-raised-button
+        class="main-button"
+        color="primary"
+      >
+        Continue study
+      </a>
+    </div>
+    <ng-template #elseParticipantBlock>
+      <button
+        mat-raised-button
+        class="main-button"
+        color="primary"
+        (click)="buyCourse()"
+      >
+        Got it
+      </button>
+      <a mat-stroked-button [routerLink]="['/']">Back to main</a>
+    </ng-template>
+  </ng-template>
+  <section style="padding: 15px 0px">
+    <h3>Reviews</h3>
+    <div *ngIf="isParticipant">
+      <app-review [courseId]="course.id"></app-review>
+    </div>
+    <div *ngIf="!isParticipant">
+      <mat-spinner *ngIf="reviews === null; else rewievsNotNull"></mat-spinner>
+      <ng-template #rewievsNotNull>
+        <app-review-view
+          *ngFor="let review of reviews"
+          [review]="review"
+        ></app-review-view>
+      </ng-template>
+    </div>
+  </section>
+</mat-card>
+<ng-template #elseBlock>
+  <mat-spinner></mat-spinner>
+</ng-template>

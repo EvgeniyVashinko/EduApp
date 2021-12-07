@@ -1,0 +1,15 @@
+<mat-spinner *ngIf="course === null; else courseNotNull"></mat-spinner>
+<ng-template #courseNotNull>
+  <mat-card *ngIf="course !== null; else elseCourseNullBlock">
+    <mat-card-title>{{ course.title }}</mat-card-title>
+    <mat-card-content>{{ course.description }}</mat-card-content>
+    <mat-spinner *ngIf="lessons === null; else lessonsNotNull"></mat-spinner>
+    <ng-template #lessonsNotNull>
+      <app-lesson-view
+        *ngFor="let lesson of lessons"
+        [lessonId]="lesson.id"
+        [lessonProgressView]="true"
+      ></app-lesson-view>
+    </ng-template>
+  </mat-card>
+</ng-template>
