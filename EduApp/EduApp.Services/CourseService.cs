@@ -61,7 +61,16 @@ namespace EduApp.Services
                 throw new AppException("Account with such id not found", nameof(account));
             }
 
-            var list = new List<Category>();
+            var course = new Course()
+            {
+                Title = request.Title,
+                Description = request.Description,
+                Price = request.Price,
+                CreationDate = DateTime.Now,
+                OwnerId = request.OwnerId,
+                Categories = new List<Category>()
+            };
+
             foreach (var categoryId in request.Categories ?? new())
             {
                 var category = await Task.Run(() => _uow.CategoryRepository.Find(categoryId));
@@ -70,18 +79,8 @@ namespace EduApp.Services
                     throw new AppException("Category with such id not found", nameof(category));
                 }
 
-                list.Add(category);
+                course.Categories.Add(category);
             }
-
-            var course = new Course()
-            {
-                Title = request.Title,
-                Description = request.Description,
-                Price = request.Price,
-                CreationDate = DateTime.Now,
-                OwnerId = request.OwnerId,
-                Categories = list
-            };
 
             _uow.CourseRepository.Add(course);
 
@@ -106,7 +105,13 @@ namespace EduApp.Services
                 throw new AppException("Account with such id not found", nameof(account));
             }
 
-            var list = new List<Category>();
+            course.Title = request.Title;
+            course.Description = request.Description;
+            course.Price = request.Price;
+            course.UpdatedDate = DateTime.Now;
+            course.OwnerId = request.OwnerId;
+            course.Categories = new List<Category>();
+
             foreach (var categoryId in request.Categories ?? new())
             {
                 var category = await Task.Run(() => _uow.CategoryRepository.Find(categoryId));
@@ -115,15 +120,8 @@ namespace EduApp.Services
                     throw new AppException("Category with such id not found", nameof(category));
                 }
 
-                list.Add(category);
+                course.Categories.Add(category);
             }
-
-            course.Title = request.Title;
-            course.Description = request.Description;
-            course.Price = request.Price;
-            course.UpdatedDate = DateTime.Now;
-            course.OwnerId = request.OwnerId;
-            course.Categories = list;
 
             _uow.CourseRepository.Update(course);
 

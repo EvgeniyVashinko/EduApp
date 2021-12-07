@@ -80,5 +80,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="EduApp.Data.publish.xml" />
+    <None Include="Scripts\Categories.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />
   </ItemGroup>
 </Project>

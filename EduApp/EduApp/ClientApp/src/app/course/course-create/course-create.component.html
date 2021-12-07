@@ -36,5 +36,26 @@
     />
   </mat-form-field>
 
+  <mat-form-field appearance="fill">
+    <mat-label>Categories</mat-label>
+    <mat-select formControlName="categories" multiple>
+      <!-- <mat-select-trigger>
+        {{ categories.value ? categories.value[0] : "" }}
+        <span
+          *ngIf="categories.value?.length > 1"
+          class="example-additional-selection"
+        >
+          (+{{ categories.value.length - 1 }}
+          {{ categories.value?.length === 2 ? "other" : "others" }})
+        </span>
+      </mat-select-trigger> -->
+      <mat-option
+        *ngFor="let category of categoriesList"
+        [value]="category.id"
+        >{{ category.name }}</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+
   <button mat-raised-button color="primary" type="submit">Create course</button>
 </form>
