@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="EduApp.Core.Entities.Account">
+    <Position X="2.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAEBAEAAAAAAgAAAAQAKAAAAAgAAIBBCAAAAAQAAIAA=</HashCode>
+      <FileName>Entities\Account.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EduApp.Core.Entities.AccountRole">
+    <Position X="4.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\AccountRole.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EduApp.Core.Entities.Category">
+    <Position X="6.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Entities\Category.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EduApp.Core.Entities.Comment">
+    <Position X="8.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAEAAAgAACAAAAAAAAAAAAAAACAIAAEA=</HashCode>
+      <FileName>Entities\Comment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EduApp.Core.Entities.Course">
+    <Position X="10.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAEAAECIAQAgAEAAEAAAAAAAAAAAEAAAACAQAAIAAAA=</HashCode>
+      <FileName>Entities\Course.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EduApp.Core.Entities.CourseCategory">
+    <Position X="9.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAgAAAIAAAAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Entities\CourseCategory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EduApp.Core.Entities.CourseParticipants">
+    <Position X="11.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\CourseParticipants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EduApp.Core.Entities.Homework">
+    <Position X="11.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAgAACAAAAAAAAAAACACAAgAAAEA=</HashCode>
+      <FileName>Entities\Homework.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EduApp.Core.Entities.Lesson">
+    <Position X="2.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAEAAAAAAAgAEAAAIAAAAAAAAAAAAQAAAAAAQIAIAA=</HashCode>
+      <FileName>Entities\Lesson.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EduApp.Core.Entities.Order">
+    <Position X="8" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAEAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAEQ=</HashCode>
+      <FileName>Entities\Order.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EduApp.Core.Entities.Review">
+    <Position X="4.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAEAAAAAAAgAAAAAoAAAAAAAAAAAAAAAAAgAAIAAEA=</HashCode>
+      <FileName>Entities\Review.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EduApp.Core.Entities.Role">
+    <Position X="9" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EduApp.Core.Entities.UserInfo">
+    <Position X="6" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAABAAAAgAAAAAAgAAIABAAAAAAAAAAAEg=</HashCode>
+      <FileName>Entities\UserInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EduApp.Core.Common.BaseEntity&lt;TKey&gt;" Collapsed="true">
+    <Position X="6.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Common\BaseEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

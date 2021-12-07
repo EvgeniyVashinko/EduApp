@@ -71,6 +71,8 @@ namespace EduApp.Services
                 Categories = new List<Category>()
             };
 
+            _uow.CourseRepository.Add(course);
+
             foreach (var categoryId in request.Categories ?? new())
             {
                 var category = await Task.Run(() => _uow.CategoryRepository.Find(categoryId));
@@ -81,8 +83,6 @@ namespace EduApp.Services
 
                 course.Categories.Add(category);
             }
-
-            _uow.CourseRepository.Add(course);
 
             _uow.Commit();
 
@@ -110,7 +110,7 @@ namespace EduApp.Services
             course.Price = request.Price;
             course.UpdatedDate = DateTime.Now;
             course.OwnerId = request.OwnerId;
-            course.Categories = new List<Category>();
+            course.Categories ??= new List<Category>();
 
             foreach (var categoryId in request.Categories ?? new())
             {
