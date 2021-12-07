@@ -21,6 +21,7 @@ import { UserModule } from "./user/user.module";
 import { LessonModule } from "./lesson/lesson.module";
 import { ReviewModule } from "./review/review.module";
 import { HomeworkModule } from "./homework/homework.module";
+import { AdminModule } from "./admin/admin.module";
 
 @NgModule({
   declarations: [AppComponent, NavMenuComponent, HomeComponent],
@@ -42,6 +43,7 @@ import { HomeworkModule } from "./homework/homework.module";
     ReviewModule,
     MatTabsModule,
     HomeworkModule,
+    AdminModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],

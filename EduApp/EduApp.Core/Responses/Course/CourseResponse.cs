@@ -12,6 +12,7 @@ namespace EduApp.Core.Responses.Course
         public Guid OwnerId { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime UpdatedDate { get; set; }
+        public bool IsActive { get; set; }
 
         public CourseResponse()
         {
@@ -27,6 +28,7 @@ namespace EduApp.Core.Responses.Course
             OwnerId = course.OwnerId;
             CreationDate = course.CreationDate;
             UpdatedDate = course.UpdatedDate;
+            IsActive = course.IsActive;
         }
     }
 }

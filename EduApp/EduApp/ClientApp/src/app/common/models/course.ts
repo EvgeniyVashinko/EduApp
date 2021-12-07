@@ -4,4 +4,5 @@
   description: string;
   price: number;
   ownerId: string;
+  isActive: boolean;
 }

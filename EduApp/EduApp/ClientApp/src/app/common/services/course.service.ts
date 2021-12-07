@@ -79,4 +79,22 @@ export class CourseService {
       environment.options
     );
   }
+
+  approveCourse(courseId: string) {
+    let requestBody = { id: courseId };
+    return this.httpClient.post<Course>(
+      environment.apiUrl + "/api/course/approve",
+      requestBody,
+      environment.options
+    );
+  }
+
+  declineCourse(courseId: string) {
+    let requestBody = { id: courseId };
+    return this.httpClient.post<Course>(
+      environment.apiUrl + "/api/course/decline",
+      requestBody,
+      environment.options
+    );
+  }
 }

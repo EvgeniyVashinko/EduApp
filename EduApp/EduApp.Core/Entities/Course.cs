@@ -22,6 +22,8 @@ namespace EduApp.Core.Entities
 
         public Account Owner { get; set; }
 
+        public bool IsActive { get; set; }
+
         public ICollection<Account> Participants { get; set; }
 
         public ICollection<Review> Rewiews { get; set; }
