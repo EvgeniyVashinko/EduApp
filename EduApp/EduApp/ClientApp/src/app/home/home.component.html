@@ -1,24 +1,53 @@
 <h1>Courses on our platform:</h1>
 <section class="form-section">
   <div class="input-group mb-1">
-    <input type="text" class="form-control" placeholder="Course name" aria-label="Recipient's username" aria-describedby="button-addon2" [(ngModel)]="query" (ngModelChange)="filterCourses()">
-    <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="query=''">╳</button>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Course name"
+      aria-label="Recipient's username"
+      aria-describedby="button-addon2"
+      [(ngModel)]="query"
+      (ngModelChange)="filterCourses()"
+    />
+    <button
+      class="btn btn-outline-secondary"
+      type="button"
+      id="button-addon2"
+      (click)="query = ''"
+    >
+      ╳
+    </button>
   </div>
 </section>
 <section>
-    <button mat-button color="primary" (click)="sortByTitle()">Sort by title</button>
-    <button mat-button color="primary" (click)="sortByPrice()">Sort by price</button>
+  <button mat-button color="primary" (click)="sortByTitle()">
+    Sort by title
+  </button>
+  <button mat-button color="primary" (click)="sortByPrice()">
+    Sort by price
+  </button>
 </section>
 <mat-spinner *ngIf="courses === null; else elseBlock"></mat-spinner>
 <ng-template #elseBlock>
   <mat-card *ngFor="let course of courses" class="my-15px">
     <mat-card-title>{{ course.title }}</mat-card-title>
-    <mat-card-subtitle>Category: </mat-card-subtitle>
     <mat-card-subtitle
-    >Course owner:
-    <b><a href="/user/{{ course.ownerId }}">Profile</a></b>
+      >Categories:
+      <span
+        *ngFor="let category of course.categoriesObj"
+        class="badge badge-pill badge-warning"
+        style="margin-right: 5px"
+        >{{ category.name }}</span
+      ></mat-card-subtitle
+    >
+    <mat-card-subtitle
+      >Course owner:
+      <b><a href="/user/{{ course.ownerId }}">Profile</a></b>
     </mat-card-subtitle>
-    <mat-card-subtitle>Price: <b>{{ course.price }}$</b></mat-card-subtitle>
+    <mat-card-subtitle
+      >Price: <b>{{ course.price }}$</b></mat-card-subtitle
+    >
     <mat-card-content>{{ course.description }}</mat-card-content>
     <a mat-raised-button color="primary" [routerLink]="['/course', course.id]"
       >About this course</a

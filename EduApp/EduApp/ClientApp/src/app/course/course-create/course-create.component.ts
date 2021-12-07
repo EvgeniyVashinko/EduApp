@@ -37,14 +37,14 @@ export class CourseCreateComponent implements OnInit {
   }
 
   createCourse() {
-    let course: Course = {
+    let course: Partial<Course> = {
       title: this.createCourseForm.get("title").value,
       description: this.createCourseForm.get("description").value,
       price: this.createCourseForm.get("price").value,
       ownerId: this.cookieService.get("accountId"),
       id: undefined,
       categories: this.createCourseForm.get("categories").value,
-      isActive: false
+      isActive: false,
     };
 
     if (course.price < 0) {

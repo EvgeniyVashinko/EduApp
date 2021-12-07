@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { CookieService } from "ngx-cookie-service";
+import { env } from "process";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { Course } from "../models/course";
@@ -28,7 +29,7 @@ export class CourseService {
     );
   }
 
-  createCourse(course: Course) {
+  createCourse(course: Partial<Course>) {
     return this.httpClient.post<Course>(
       environment.apiUrl + `/api/course/create`,
       course,
@@ -94,6 +95,13 @@ export class CourseService {
     return this.httpClient.post<Course>(
       environment.apiUrl + "/api/course/decline",
       requestBody,
+      environment.options
+    );
+  }
+
+  deleteCourse(courseId: string) {
+    return this.httpClient.delete<Course>(
+      environment.apiUrl + "/api/course/" + courseId,
       environment.options
     );
   }
