@@ -5,4 +5,5 @@
   price: number;
   ownerId: string;
   categories: string[];
+  isActive: boolean;
 }

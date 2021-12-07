@@ -141,5 +141,35 @@ namespace EduApp.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost("Approve")]
+        public async Task<IActionResult> ApproveCourse([FromBody] GetCourseRequest request)
+        {
+            try
+            {
+                var response = await _courseService.ApproveCourse(request);
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("Decline")]
+        public async Task<IActionResult> DeclineCourse([FromBody] GetCourseRequest request)
+        {
+            try
+            {
+                var response = await _courseService.DeclineCourse(request);
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
